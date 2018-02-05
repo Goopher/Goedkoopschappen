@@ -1,0 +1,19 @@
+<mat-toolbar color="primary">
+    Goedkoopschappen
+    <span class="divider"></span>
+    <mat-input-container class="search-box-container">
+        <input matInput class="search-box"> 
+    </mat-input-container>
+</mat-toolbar>
+
+<mat-sidenav-container class="nav-container">
+    <mat-sidenav #sidenav class="sidenav">
+        Sidenav content goes here
+    </mat-sidenav>
+
+    <div class="sidenav-content">
+        <button mat-button (click)="sidenav.open()">
+            Open sidenav!
+        </button>
+    </div>
+</mat-sidenav-container>
