@@ -9,9 +9,8 @@ export class DataService {
     console.log('Data service connected...');
    }
 
-   getProducts(){
-      return this.http.get('http://localhost:8080/products', {params: {"productName": "cola"}})
+   getProducts(searchString){
+      return this.http.get('http://localhost:8080/products', {params: {"productName": searchString} })
       .map(res => res.json());
    }
-
 }

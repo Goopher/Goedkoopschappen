@@ -1,12 +1,19 @@
 <mat-toolbar color="primary">
-    Goedkoopschappen
-    <span class="divider"></span>
-    <mat-input-container class="search-box-container">
-        <input matInput class="search-box"> 
-    </mat-input-container>
-</mat-toolbar>
+    <b>Goedkoopschappen</b>
+    <span class="fill-space"></span>
 
-<mat-sidenav-container class="nav-container">
+    <mat-icon style="padding: 10px">search</mat-icon>
+    <form submit="searchProducts()">
+    <mat-form-field >
+        <input matInput [(ngModel)]="searchString" name="searchInput" type="text" (keydown)="searchProducts($event)">
+    </mat-form-field>
+</form>
+
+
+</mat-toolbar>
+<app-product [products]="products"></app-product>
+
+<!-- <mat-sidenav-container class="nav-container">
     <mat-sidenav #sidenav class="sidenav">
         Sidenav content goes here
     </mat-sidenav>
@@ -16,4 +23,4 @@
             Open sidenav!
         </button>
     </div>
-</mat-sidenav-container>
+</mat-sidenav-container> -->

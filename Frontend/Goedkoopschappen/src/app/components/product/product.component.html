@@ -1,6 +1,17 @@
-<h1>Hello {{name}}</h1>
-<ul>
-  <li *ngFor="let product of products">
-    {{product.productName}}
-  </li>
-</ul>
+<mat-grid-list  cols="4">
+  <mat-grid-tile *ngFor="let product of products"  >
+    <mat-card  style="width: 350px; height: 500px" >
+      <a href={{product.productUrl}} target="_blank" >
+        <img src={{product.imageUrl}} class="mat-card-image" alt="productavatar">
+      </a>
+      <mat-card-content >
+        <h2>{{product.productName}}</h2>
+        <p>€ {{product.price/100}}</p>
+      </mat-card-content>
+      <div class="mat-actions" layout="row" layout-align="end center">
+        <Button mat-button>Save</Button>
+        <Button mat-button>View</Button>
+      </div>
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>
