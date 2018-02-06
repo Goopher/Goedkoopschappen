@@ -12,8 +12,6 @@ import java.util.UUID;
 @Controller
 public class ProductController {
 
-    @Autowired
-    private IProductService iProductService;
 
     @RequestMapping(value = "/resource")
     @ResponseBody
