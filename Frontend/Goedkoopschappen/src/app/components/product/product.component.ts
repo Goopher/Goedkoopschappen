@@ -4,7 +4,7 @@ import { DataService } from '../../services/data.service'
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
-  styleUrls: ['./product.component.css']
+  styleUrls: ['./product.component.scss']
 })
 export class ProductComponent implements OnInit {
 
@@ -18,12 +18,14 @@ export class ProductComponent implements OnInit {
 
   }
 
-  searchProducts(searchString) {
-    this.dataService.getProducts(searchString).subscribe((products) => {
-      this.products = products;
-      this.data = this.products.slice(0,5);
-      console.log(products)
-    }); 
+  searchProducts(event, searchString) {
+    if (event.key == "Enter") {
+      this.dataService.getProducts(searchString).subscribe((products) => {
+        this.products = products;
+        this.data = this.products.slice(0,15);
+        console.log(products)
+      });
+    }
   }
 
   loadMoreProducts() {

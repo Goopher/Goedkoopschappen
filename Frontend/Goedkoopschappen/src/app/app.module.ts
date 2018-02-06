@@ -1,14 +1,16 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http'
-import {FormsModule} from '@angular/forms'
+import { FormsModule } from '@angular/forms'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatGridListModule, MatInputModule, MatButtonModule, MatCardModule, MatMenuModule, MatToolbarModule, MatIconModule, MatSidenavModule, MatCheckboxModule } from '@angular/material';
+import { MDBBootstrapModule } from 'angular-bootstrap-md'
 
-
+import { InfiniteScrollModule  } from 'ngx-infinite-scroll';
 
 import { AppComponent } from './app.component';
 import { ProductComponent } from './components/product/product.component';
+
 
 import { DataService } from './services/data.service';
 
@@ -31,7 +33,9 @@ import { DataService } from './services/data.service';
     MatSidenavModule,
     MatCheckboxModule,
     MatInputModule,
-    MatGridListModule
+    MatGridListModule,
+    InfiniteScrollModule,
+    MDBBootstrapModule.forRoot(),
   ],
   providers: [DataService],
   bootstrap: [AppComponent]

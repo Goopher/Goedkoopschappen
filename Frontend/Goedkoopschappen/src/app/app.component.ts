@@ -6,7 +6,7 @@ import { DataService } from '../app/services/data.service'
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
   title = 'app';
@@ -15,26 +15,11 @@ export class AppComponent implements OnInit {
 
 
 
-  constructor(private dataService: DataService) {
+  constructor() {  }
+  ngOnInit(){}
 
-  }
-
-  ngOnInit() {
-
-  }
-
-  searchProducts(event) {
-    if (event.key == "Enter") {
-      console.log(event);
-
-      this.dataService.getProducts(this.searchString).subscribe((products) => {
-        this.products = products;
-        console.log(products)
-      });
-    }
-
-  }
 }
+
 
 interface Product {
   product_name: string;

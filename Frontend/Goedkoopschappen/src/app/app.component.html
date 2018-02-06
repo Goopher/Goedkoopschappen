@@ -1,19 +1,48 @@
-<mat-toolbar color="primary" role="heading">
+<mdb-navbar SideClass="navbar fixed-top navbar-expand-lg navbar-dark bg-blue scrolling-navbar" [containerInside]="false">
+        <logo>
+            <a class="logo navbar-brand" href="#"><strong>GoedkoopschApp</strong></a>
+        </logo>
+      
 
-    <img src="../assets/GKAlogo.svg" height="80%">
-    <span class="fill-space"></span>
+        <links>
+            
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active waves-light" mdbRippleRadius>
+                    <a class="nav-link">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item waves-light" mdbRippleRadius>
+                    <a class="nav-link">Winkelwagen</a>
+                </li>
 
-    <mat-icon style="padding: 10px">search</mat-icon>
-    <form submit="searchProducts()">
-    <mat-form-field >
-        <input matInput [(ngModel)]="searchString" name="searchInput" type="text" (keydown)="searchProducts($event)">
-    </mat-form-field>
-</form>
+            </ul>
+            <form class="form-inline">
+                <input class="form-control mr-sm-2" matInput type="text" name="searchBox" placeholder="Search" aria-label="Search" [(ngModel)]="searchString" (keydown)="productRef.searchProducts($event, searchString)">
+            </form>
+            <ul class="navbar-nav nav-flex-icons">
+                <li class="nav-item waves-light" mdbRippleRadius>
+                    <a class="nav-link"><i class="fa fa-facebook"></i></a>
+                </li>
+                <li class="nav-item waves-light" mdbRippleRadius>
+                    <a class="nav-link"><i class="fa fa-twitter"></i></a>
+                </li>
+                <li class="nav-item waves-light" mdbRippleRadius>
+                    <a class="nav-link"><i class="fa fa-instagram"></i></a>
+                </li>
+            </ul>
+        </links>
+    </mdb-navbar>
 
 
-</mat-toolbar>
+<!--<form submit="productRef.searchProducts()">
+        <mat-form-field>
+            <input matInput [(ngModel)]="searchString" name="searchInput" type="text" (keydown)="productRef.searchProducts($event, searchString)">
+        </mat-form-field>
+    </form> -->
 
-<app-product [products]="products"></app-product>
+<div class="content" style="padding-top:100px; overflow:hidden">
+    <app-product #productRef [products]="products"></app-product>
+</div>
+
 
 <!-- <mat-sidenav-container class="nav-container">
     <mat-sidenav #sidenav class="sidenav">

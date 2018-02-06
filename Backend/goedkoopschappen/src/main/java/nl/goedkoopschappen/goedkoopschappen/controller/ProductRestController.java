@@ -6,11 +6,11 @@ import nl.goedkoopschappen.goedkoopschappen.repositories.IProductRepository;
 
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Comparator;
 import java.util.List;
 
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
 public class ProductRestController {
 
     private IProductRepository repository;
@@ -20,8 +20,16 @@ public class ProductRestController {
     }
 
     @RequestMapping(value = "/products", params = "productName")
+    @CrossOrigin(origins = "http://localhost:4200")
     public List<Product> findByProductName (@RequestParam(value = "productName")String searchString){
-        return repository.findByProductNameContaining(searchString);
+        List<Product> products = repository.findByProductNameContaining(searchString);
+        products.sort(new Comparator<Product>() {
+            @Override
+            public int compare(Product o1, Product o2) {
+                return Integer.compare(o1.getPrice(), o2.getPrice());
+            }
+        });
+        return products;
     }
 
    @RequestMapping(value = "/additemtocart", method = RequestMethod.POST, params = "itemId")
