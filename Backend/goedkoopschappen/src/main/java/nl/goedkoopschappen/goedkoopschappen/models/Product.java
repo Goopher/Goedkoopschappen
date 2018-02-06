@@ -26,8 +26,7 @@ public class Product implements Serializable {
     private String productUrl;
     @Column
     private String imageUrl;
-    @ManyToMany
-    private List<GroceryList> groceryLists;
+
 
     /*    @Column
     private int amount;*/
@@ -109,13 +108,6 @@ public class Product implements Serializable {
         this.description = description;
     }
 
-    public List<GroceryList> getGroceryLists() {
-        return groceryLists;
-    }
-
-    public void setGroceryLists(List<GroceryList> groceryLists) {
-        this.groceryLists = groceryLists;
-    }
 
 
     @Override

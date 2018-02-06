@@ -11,8 +11,7 @@ import java.util.List;
 
 
 @RepositoryRestResource
-public interface ProductRepository extends JpaRepository<Product, Long> {
+public interface IProductRepository extends JpaRepository<Product, Long> {
 
     List<Product> findByProductNameContaining(String name);
 }
->>>>>>> master:Backend/goedkoopschappen/src/main/java/nl/goedkoopschappen/goedkoopschappen/repositories/ProductRepository.java

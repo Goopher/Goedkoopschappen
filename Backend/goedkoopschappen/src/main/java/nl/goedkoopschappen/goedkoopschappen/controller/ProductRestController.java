@@ -6,18 +6,16 @@ import nl.goedkoopschappen.goedkoopschappen.repositories.IProductRepository;
 
 
 import nl.goedkoopschappen.goedkoopschappen.services.IProductService;
-import nl.goedkoopschappen.goedkoopschappen.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Iterator;
 import java.util.List;
 
 
 @RestController
-@CrossOrigin(origins = "http://loacalhost:4200")
+@CrossOrigin(origins = "http://localhost:4200")
 public class ProductRestController {
 
 
@@ -26,12 +24,13 @@ public class ProductRestController {
 
 
     @RequestMapping(value = "/products", params = "productName")
-    @ResponseBody
     public List<Product> home (@RequestParam(value = "productName")String searchString){
 
         return iProductService.findByProductNameContaining(searchString);
     }
 
+    @PostMapping
+    public List<Product> addToList()
 
 
 
