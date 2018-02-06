@@ -12,22 +12,23 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Iterator;
 import java.util.List;
 
 
 @RestController
 public class ProductRestController {
 
-    private ProductRepository repository;
 
-    public ProductRestController (ProductRepository repository){
-        this.repository = repository;
-    }
+    @Autowired
+    private IProductService iProductService;
+
 
     @RequestMapping(value = "/products", params = "productName")
     @ResponseBody
     public List<Product> home (@RequestParam(value = "productName")String searchString){
-        return repository.findByProductNameContaining(searchString);
+
+        return iProductService.findByProductNameContaining(searchString);
     }
 
 
