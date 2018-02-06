@@ -20,7 +20,7 @@ import java.util.UUID;
 @SpringBootApplication
 public class GoedkoopschappenApplication {
 	private static final Logger log = LoggerFactory.getLogger(Application.class);
-
+	private String query;
 
 
 	public static void main(String[] args) {
@@ -33,7 +33,7 @@ public class GoedkoopschappenApplication {
 		return (args) -> {
 			// save a couple of customers
 
-			// fetch all customers
+			// fetch all products
 			log.info("Customers found with findAll():");
 			log.info("-------------------------------");
 			for (Product product : repository.findByProductNameContaining("chocola")) {

@@ -6,7 +6,8 @@ import nl.goedkoopschappen.goedkoopschappen.repositories.IProductRepository;
 
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Comparator;
+import java.util.Iterator;
+>>>>>>> master
 import java.util.List;
 
 
@@ -14,7 +15,17 @@ import java.util.List;
 public class ProductRestController {
 
 
+    @Autowired
+    private IProductService iProductService;
 
+
+    @RequestMapping(value = "/products", params = "productName")
+    @ResponseBody
+    public List<Product> home (@RequestParam(value = "productName")String searchString){
+
+        return iProductService.findByProductNameContaining(searchString);
+    }
+>>>>>>> master
 
 
 }

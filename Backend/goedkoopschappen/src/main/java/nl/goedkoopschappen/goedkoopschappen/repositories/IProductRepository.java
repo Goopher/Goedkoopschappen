@@ -7,3 +7,12 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import java.util.List;
 
+
+
+
+@RepositoryRestResource
+public interface ProductRepository extends JpaRepository<Product, Long> {
+
+    List<Product> findByProductNameContaining(String name);
+}
+>>>>>>> master:Backend/goedkoopschappen/src/main/java/nl/goedkoopschappen/goedkoopschappen/repositories/ProductRepository.java
