@@ -1,0 +1,20 @@
+.fill-space{ 
+    flex: 1 1 auto
+}
+
+.header-picture {
+    flex: 1 1 auto
+}
+
+.fixed-header {
+    position: fixed;
+    z-index: 999;
+  }
+
+.content {
+    
+  }
+
+/deep/ .mat-input-underline {
+    background-color: #ffffff;    /* replace this color with your accent color hex code */
+}
