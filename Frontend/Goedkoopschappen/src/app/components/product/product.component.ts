@@ -1,28 +1,41 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { DataService } from '../../services/data.service'
 
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
-  styleUrls: ['./product.component.css']
+  styleUrls: ['./product.component.scss']
 })
 export class ProductComponent implements OnInit {
-  products:Product[]
 
 
+  @Input() products:Product[]
+  data:Product[]
 
   constructor(private dataService:DataService) { }
 
   ngOnInit() {
-    this.dataService.getProducts().subscribe((products) => {
-      this.products = products;
-      console.log(products)
-    }); 
+
   }
+
+  searchProducts(event, searchString) {
+    if (event.key == "Enter") {
+      this.dataService.getProducts(searchString).subscribe((products) => {
+        this.products = products;
+        this.data = this.products.slice(0,15);
+        console.log(products)
+      });
+    }
+  }
+
+  loadMoreProducts() {
+    this.data = this.products.slice(0,this.data.length + 5);
+  }
+
 
 }
 
-interface Product{
+interface Product {
   product_name:string;
   product_brand:string;
   description:string;

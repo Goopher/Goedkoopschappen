@@ -2,11 +2,14 @@ package nl.goedkoopschappen.goedkoopschappen.controller;
 
 
 import nl.goedkoopschappen.goedkoopschappen.models.Product;
-import nl.goedkoopschappen.goedkoopschappen.repositories.ProductRepository;
+import nl.goedkoopschappen.goedkoopschappen.repositories.IProductRepository;
+
 
 import nl.goedkoopschappen.goedkoopschappen.services.IProductService;
 import nl.goedkoopschappen.goedkoopschappen.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+
+
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Iterator;
@@ -28,6 +31,7 @@ public class ProductRestController {
 
         return iProductService.findByProductNameContaining(searchString);
     }
+
 
 
 
