@@ -11,14 +11,12 @@ import { AppComponent } from './app.component';
 import { ProductComponent } from './components/product/product.component';
 
 import { DataService } from './services/data.service';
-import { MainMenuComponent } from './main-menu/main-menu.component'
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProductComponent,
-    MainMenuComponent
+    ProductComponent
   ],
   imports: [
     BrowserModule,

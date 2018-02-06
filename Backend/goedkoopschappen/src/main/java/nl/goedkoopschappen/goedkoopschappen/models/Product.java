@@ -26,9 +26,11 @@ public class Product implements Serializable {
     private String productUrl;
     @Column
     private String imageUrl;
-/*    @Column
-    private int amount;*/
+    @ManyToMany
+    private List<GroceryList> groceryLists;
 
+    /*    @Column
+    private int amount;*/
 
     public Product () {
 
@@ -67,6 +69,7 @@ public class Product implements Serializable {
         this.price = price;
     }
 
+
 /*    public int getAmount() {
         return amount;
     }
@@ -74,7 +77,6 @@ public class Product implements Serializable {
     public void setAmount(int amount) {
         this.amount = amount;
     }*/
-
     public int getHouseBrand() {
         return houseBrand;
     }
@@ -105,6 +107,14 @@ public class Product implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public List<GroceryList> getGroceryLists() {
+        return groceryLists;
+    }
+
+    public void setGroceryLists(List<GroceryList> groceryLists) {
+        this.groceryLists = groceryLists;
     }
 
 

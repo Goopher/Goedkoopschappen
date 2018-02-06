@@ -2,6 +2,10 @@
     flex: 1 1 auto
 }
 
+.header-picture {
+    flex: 1 1 auto
+}
+
 /deep/ .mat-input-underline {
     background-color: #ffffff;    /* replace this color with your accent color hex code */
 }

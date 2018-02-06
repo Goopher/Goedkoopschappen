@@ -10,6 +10,7 @@ import java.util.List;
 
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 public class ProductRestController {
 
     private IProductRepository repository;
@@ -19,10 +20,16 @@ public class ProductRestController {
     }
 
     @RequestMapping(value = "/products", params = "productName")
-    @CrossOrigin(origins = "http://localhost:4200")
-    public List<Product> home (@RequestParam(value = "productName")String searchString){
+    public List<Product> findByProductName (@RequestParam(value = "productName")String searchString){
         return repository.findByProductNameContaining(searchString);
     }
+
+   @RequestMapping(value = "/additemtocart", method = RequestMethod.POST, params = "itemId")
+    public boolean addItemToCart (@RequestParam(value="productId")Long productId) {
+        return false;
+   }
+
+
 
 
 }

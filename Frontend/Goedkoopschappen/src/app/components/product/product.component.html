@@ -1,17 +1,16 @@
-<mat-grid-list  cols="4">
-  <mat-grid-tile *ngFor="let product of products"  >
-    <mat-card  style="width: 350px; height: 500px" >
-      <a href={{product.productUrl}} target="_blank" >
+<mat-grid-list cols="4">
+  <mat-grid-tile *ngFor="let product of products">
+    <mat-card class="product-card" style="height:325px; width: 250px">
+      <a href={{product.productUrl}} target="_blank">
         <img src={{product.imageUrl}} class="mat-card-image" alt="productavatar">
       </a>
-      <mat-card-content >
-        <h2>{{product.productName}}</h2>
-        <p>€ {{product.price/100}}</p>
+      <mat-card-content>
+        <h3>{{product.productName}}</h3>
       </mat-card-content>
-      <div class="mat-actions" layout="row" layout-align="end center">
-        <Button mat-button>Save</Button>
-        <Button mat-button>View</Button>
-      </div>
+      <mat-card-actions>
+            <b style="padding-left: 150px; padding-right:25px">€ {{product.price/100}} </b>
+            <button flex="15" mat-fab color="primary">+</button>
+      </mat-card-actions>
     </mat-card>
   </mat-grid-tile>
 </mat-grid-list>
