@@ -10,4 +10,5 @@ public interface IProductDAO extends CrudRepository<Product, Long>{
 
     List<Product> findByProductNameContaining(String searchString);
 
+    Product findByProductId(Long productId);
 }

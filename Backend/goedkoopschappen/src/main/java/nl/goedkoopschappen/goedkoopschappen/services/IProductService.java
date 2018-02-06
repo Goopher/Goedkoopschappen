@@ -11,4 +11,6 @@ public interface IProductService {
     List<Product> findAll();
 
     List<Product> findByProductNameContaining(String searchString);
+
+    Product findByProductId(Long productId);
 }

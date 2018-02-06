@@ -7,16 +7,14 @@ import nl.goedkoopschappen.goedkoopschappen.repositories.ProductRepository;
 import nl.goedkoopschappen.goedkoopschappen.services.IProductService;
 import nl.goedkoopschappen.goedkoopschappen.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Iterator;
 import java.util.List;
 
 
 @RestController
+@CrossOrigin(origins = "http://loacalhost:4200")
 public class ProductRestController {
 
 
@@ -30,6 +28,8 @@ public class ProductRestController {
 
         return iProductService.findByProductNameContaining(searchString);
     }
+
+
 
 
 }

@@ -5,6 +5,7 @@ import nl.goedkoopschappen.goedkoopschappen.models.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -25,6 +26,9 @@ public class ProductService implements IProductService {
     }
 
     @Override
+    public Product findByProductId(Long productId){return this.iProductDAO.findByProductId(productId);}
+
+    @Override
     public List<Product> findByProductNameContaining(String searchString) {
         List<Product> productList = this.iProductDAO.findByProductNameContaining(searchString);
                 Iterator<Product> i = productList.iterator();
@@ -35,7 +39,15 @@ public class ProductService implements IProductService {
                 i.remove();
                 System.out.println(p.getProductName()+" removed");
             }
+
         }
+        productList.sort(new Comparator<Product>() {
+            @Override
+            public int compare(Product o1, Product o2) {
+                return Integer.compare(o1.getPrice(),o2.getPrice());
+            }
+        });
+
         return productList;
     }
 }
