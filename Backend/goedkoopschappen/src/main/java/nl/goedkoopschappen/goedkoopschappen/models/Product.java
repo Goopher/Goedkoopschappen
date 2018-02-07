@@ -2,7 +2,9 @@ package nl.goedkoopschappen.goedkoopschappen.models;
 
 import javax.persistence.*;
 import java.io.Serializable;
+
 import java.util.List;
+
 
 
 @Entity(name="jumboproducts")
@@ -29,6 +31,8 @@ public class Product implements Serializable {
     @ManyToMany
     private List<GroceryList> groceryLists;
 
+    @ManyToMany(mappedBy = "products")
+    private Set<GroceryList> groceryLists;
 
     /*    @Column
     private int amount;*/
@@ -107,6 +111,14 @@ public class Product implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Set<GroceryList> getGroceryLists() {
+        return groceryLists;
+    }
+
+    public void setGroceryLists(Set<GroceryList> groceryLists) {
+        this.groceryLists = groceryLists;
     }
 
 

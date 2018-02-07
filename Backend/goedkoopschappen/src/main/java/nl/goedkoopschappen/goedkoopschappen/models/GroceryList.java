@@ -1,7 +1,10 @@
 package nl.goedkoopschappen.goedkoopschappen.models;
 
 import javax.persistence.*;
+
+import java.sql.Timestamp;
 import java.util.List;
+import java.util.Set;
 
 
 @Entity(name="grocery_lists")
@@ -9,36 +12,53 @@ public class GroceryList {
 
     @Id
     @GeneratedValue
-    private Long groceryListId;
+
+    private int groceryListId;
 
     @Column
-    private String creationDate;
+    private String groceryListName;
+
+    @Column
+    private Timestamp timestamp;
 
     @ManyToMany
-    private List<Product> productList;
+    @JoinTable(
+            name = "grocery_list_product",
+            joinColumns = {@JoinColumn(name="grocery_list_id")},
+            inverseJoinColumns = {@JoinColumn(name="product_id")}
+    )
 
-    public Long getGroceryListId() {
+    private Set<Product> products;
+
+    public int getGroceryListId() {
         return groceryListId;
     }
 
-    public void setGroceryListId(Long groceryListId) {
+    public void setGroceryListId(int groceryListId) {
         this.groceryListId = groceryListId;
     }
 
-    public String getCreationDate() {
-        return creationDate;
+    public String getGroceryListName() {
+        return groceryListName;
     }
 
-    public void setCreationDate(String creationDate) {
-        this.creationDate = creationDate;
+    public void setGroceryListName(String groceryListName) {
+        this.groceryListName = groceryListName;
     }
 
-    public List<Product> getProductList() {
-        return productList;
+    public Timestamp getTimestamp() {
+        return timestamp;
     }
 
-    public void setProductList(List<Product> productList) {
-        this.productList = productList;
+    public void setTimestamp(Timestamp timestamp) {
+        this.timestamp = timestamp;
     }
 
+    public Set<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(Set<Product> products) {
+        this.products = products;
+    }
 }
