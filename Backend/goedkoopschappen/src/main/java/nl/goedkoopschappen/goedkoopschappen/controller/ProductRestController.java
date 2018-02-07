@@ -1,7 +1,7 @@
 package nl.goedkoopschappen.goedkoopschappen.controller;
 
 
-import nl.goedkoopschappen.goedkoopschappen.models.GroceryListItem;
+import nl.goedkoopschappen.goedkoopschappen.models.GroceryList;
 import nl.goedkoopschappen.goedkoopschappen.models.Product;
 
 
@@ -35,12 +35,9 @@ public class ProductRestController {
     }
 
     @PostMapping(value="/addToCart")
-    public void addToList(@ModelAttribute Long productId){
+    public void addToList(@RequestBody Product product){
 
-        GroceryListItem groceryListItem = new GroceryListItem();
-        groceryListItem.setProductId(productId);
-        iGroceryListService.create(groceryListItem);
-        System.out.println("GroceryListItem made: " + productId);
+
 
     }
 }

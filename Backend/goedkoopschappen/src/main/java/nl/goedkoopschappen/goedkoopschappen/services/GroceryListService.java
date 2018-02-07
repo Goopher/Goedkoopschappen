@@ -2,7 +2,7 @@ package nl.goedkoopschappen.goedkoopschappen.services;
 
 import nl.goedkoopschappen.goedkoopschappen.dao.IGroceryListDAO;
 import nl.goedkoopschappen.goedkoopschappen.dao.IProductDAO;
-import nl.goedkoopschappen.goedkoopschappen.models.GroceryListItem;
+import nl.goedkoopschappen.goedkoopschappen.models.GroceryList;
 import nl.goedkoopschappen.goedkoopschappen.models.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,18 +20,11 @@ public class GroceryListService implements IGroceryListService{
     private IProductDAO iProductDAO;
 
     @Override
-    public void create(GroceryListItem groceryListItem) {
-        this.iGroceryListDAO.save(groceryListItem);
+    public void create(GroceryList groceryList) {
+        this.iGroceryListDAO.save(groceryList);
     }
 
     @Override
-    public List<Product> findAll() {
-        List<GroceryListItem> groceryList = this.iGroceryListDAO.findAll();
-        List<Product> productList = new ArrayList<>();
-        for(GroceryListItem item : groceryList){
-            productList.add(iProductDAO.findByProductId(item.getProductId()));
-        }
-        return productList;
-    }
+    public List<GroceryList> findAll() { return this.iGroceryListDAO.findAll();}
 
 }
