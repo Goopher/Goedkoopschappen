@@ -13,4 +13,8 @@ export class DataService {
       return this.http.get('http://localhost:8080/products', {params: {"productName": searchString} })
       .map(res => res.json());
    }
+
+   addProductToCart(product) {
+     
+   }
 }
