@@ -47,11 +47,7 @@ public class ProductRestController {
 
         groceryList.getProductList().add(product);
         iGroceryListService.create(groceryList);
-
-/*        GroceryList groceryListItem = new GroceryList();
-        groceryListItem.setProductId(product.getProductId());
-        iGroceryListService.create(groceryListItem);*/
-        System.out.println("GroceryList made: " + product.toString());
+        System.out.println("Product added to grocery list, ProductID: " + product.toString() + " , grocery list ID: " + groceryList.getGroceryListId());
         return "Hoi";
     }
 }

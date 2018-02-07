@@ -12,8 +12,7 @@ public class GroceryList {
 
     @Id
     @GeneratedValue
-
-    private int groceryListId;
+    private Long groceryListId;
 
     @Column
     private String groceryListName;
@@ -27,14 +26,13 @@ public class GroceryList {
             joinColumns = {@JoinColumn(name="grocery_list_id")},
             inverseJoinColumns = {@JoinColumn(name="product_id")}
     )
+    private List<Product> productList;
 
-    private Set<Product> products;
-
-    public int getGroceryListId() {
+    public Long getGroceryListId() {
         return groceryListId;
     }
 
-    public void setGroceryListId(int groceryListId) {
+    public void setGroceryListId(Long groceryListId) {
         this.groceryListId = groceryListId;
     }
 
@@ -54,11 +52,12 @@ public class GroceryList {
         this.timestamp = timestamp;
     }
 
-    public Set<Product> getProducts() {
-        return products;
+    public List<Product> getProductList() {
+        return productList;
     }
 
-    public void setProducts(Set<Product> products) {
-        this.products = products;
+    public void setProductList(List<Product> productList) {
+        this.productList = productList;
     }
+
 }

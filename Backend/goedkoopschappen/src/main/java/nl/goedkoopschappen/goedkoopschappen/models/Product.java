@@ -28,11 +28,8 @@ public class Product implements Serializable {
     private String productUrl;
     @Column
     private String imageUrl;
-    @ManyToMany
+    @ManyToMany(mappedBy = "productList")
     private List<GroceryList> groceryLists;
-
-    @ManyToMany(mappedBy = "products")
-    private Set<GroceryList> groceryLists;
 
     /*    @Column
     private int amount;*/
@@ -113,15 +110,13 @@ public class Product implements Serializable {
         this.description = description;
     }
 
-    public Set<GroceryList> getGroceryLists() {
+    public List<GroceryList> getGroceryLists() {
         return groceryLists;
     }
 
-    public void setGroceryLists(Set<GroceryList> groceryLists) {
+    public void setGroceryLists(List<GroceryList> groceryLists) {
         this.groceryLists = groceryLists;
     }
-
-
 
     @Override
     public String toString() {
