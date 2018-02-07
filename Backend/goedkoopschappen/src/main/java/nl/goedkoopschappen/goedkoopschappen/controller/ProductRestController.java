@@ -28,11 +28,4 @@ public class ProductRestController {
 
         return iProductService.findByProductNameContaining(searchString);
     }
-
-    @PostMapping
-    public List<Product> addToList()
-
-
-
-
 }
