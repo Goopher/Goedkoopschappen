@@ -2,7 +2,6 @@ package nl.goedkoopschappen.goedkoopschappen.models;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
 
 
 @Entity(name="jumboproducts")
