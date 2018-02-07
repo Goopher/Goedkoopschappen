@@ -29,9 +29,9 @@ export class ProductComponent implements OnInit {
     }
   }
 
-  addProductToCard(product) {
-    this.product = product;
-    console.log(product.product_name + "Product added");
+  addProductToCard(product:Product) {
+    this.dataService.addProductToCart(product).subscribe();
+    console.log(product.product_name);
   }
 
   loadMoreProducts() {

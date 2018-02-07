@@ -1,6 +1,6 @@
 <div class="container" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="loadMoreProducts()">
   <div class="row d-flex">
-    <div *ngFor="let product of data" [product="product"] class="col-lg-3 col-4 d-flex" style="padding-bottom: 50px;">
+    <div *ngFor="let product of data" class="col-lg-3 col-4 d-flex" style="padding-bottom: 50px;">
       <!--Card-->
       <div class="card">
         <!--Card image-->
