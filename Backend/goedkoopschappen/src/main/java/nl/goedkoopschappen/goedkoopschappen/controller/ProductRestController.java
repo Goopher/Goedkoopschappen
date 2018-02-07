@@ -43,8 +43,4 @@ public class ProductRestController {
         System.out.println("GroceryListItem made: " + productId);
 
     }
-
-
-
-
 }
