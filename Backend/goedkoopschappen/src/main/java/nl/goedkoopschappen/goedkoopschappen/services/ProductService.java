@@ -37,7 +37,7 @@ public class ProductService implements IProductService {
             // Do something
             if (p.getProductName().matches("(.*)?(\\w)(?i)"+searchString+"(?i)(\\w)?(.*)?")) {
                 i.remove();
-                System.out.println(p.getProductName()+" removed");
+                //System.out.println(p.getProductName()+" removed");
             }
 
         }

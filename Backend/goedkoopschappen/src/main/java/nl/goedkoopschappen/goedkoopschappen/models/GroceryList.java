@@ -1,15 +1,18 @@
 package nl.goedkoopschappen.goedkoopschappen.models;
 
 import javax.persistence.*;
+
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.Set;
+
 
 @Entity(name="grocery_lists")
 public class GroceryList {
 
     @Id
     @GeneratedValue
+
     private int groceryListId;
 
     @Column

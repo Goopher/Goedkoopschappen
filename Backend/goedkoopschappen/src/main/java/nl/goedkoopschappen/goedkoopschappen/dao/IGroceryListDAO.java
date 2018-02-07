@@ -8,4 +8,8 @@ import java.util.List;
 public interface IGroceryListDAO extends CrudRepository<GroceryList, Long>{
     List<GroceryList> findAll();
 
+
+
+    @Override
+    GroceryList findOne(Long id);
 }

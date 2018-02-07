@@ -35,9 +35,23 @@ public class ProductRestController {
     }
 
     @PostMapping(value="/addToCart")
-    public void addToList(@RequestBody Product product){
+    public String addToList( @RequestBody Product product){
+
+        GroceryList groceryList = iGroceryListService.findOne(1L);
 
 
+        if(groceryList == null) {
+            iGroceryListService.create(new GroceryList());
+            groceryList = iGroceryListService.findOne(1L);
+        }
 
+        groceryList.getProductList().add(product);
+        iGroceryListService.create(groceryList);
+
+/*        GroceryList groceryListItem = new GroceryList();
+        groceryListItem.setProductId(product.getProductId());
+        iGroceryListService.create(groceryListItem);*/
+        System.out.println("GroceryList made: " + product.toString());
+        return "Hoi";
     }
 }
