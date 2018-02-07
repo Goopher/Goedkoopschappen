@@ -1,10 +1,11 @@
 package nl.goedkoopschappen.goedkoopschappen.controller;
 
 
+import nl.goedkoopschappen.goedkoopschappen.models.GroceryListItem;
 import nl.goedkoopschappen.goedkoopschappen.models.Product;
-import nl.goedkoopschappen.goedkoopschappen.repositories.IProductRepository;
 
 
+import nl.goedkoopschappen.goedkoopschappen.services.IGroceryListService;
 import nl.goedkoopschappen.goedkoopschappen.services.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -22,15 +23,26 @@ public class ProductRestController {
     @Autowired
     private IProductService iProductService;
 
+    @Autowired
+    private IGroceryListService iGroceryListService;
+
+    private String currentQuery = "";
 
     @RequestMapping(value = "/products", params = "productName")
     public List<Product> home (@RequestParam(value = "productName")String searchString){
-
+        currentQuery = searchString;
         return iProductService.findByProductNameContaining(searchString);
     }
 
-    @PostMapping
-    public List<Product> addToList()
+    @PostMapping(value="/addToCart")
+    public void addToList(@ModelAttribute Long productId){
+
+        GroceryListItem groceryListItem = new GroceryListItem();
+        groceryListItem.setProductId(productId);
+        iGroceryListService.create(groceryListItem);
+        System.out.println("GroceryListItem made: " + productId);
+
+    }
 
 
 
