@@ -14,7 +14,7 @@ import java.util.List;
 public class GroceryListService implements IGroceryListService{
 
     @Autowired
-    IGroceryListDAO iGroceryListDAO;
+    private IGroceryListDAO iGroceryListDAO;
 
     @Autowired
     private IProductDAO iProductDAO;
@@ -25,8 +25,8 @@ public class GroceryListService implements IGroceryListService{
     }
 
     @Override
-
     public List<GroceryList> findAll() { return this.iGroceryListDAO.findAll();}
+
 
     public GroceryList findOne(Long id) {
         return iGroceryListDAO.findOne(id);
