@@ -16,9 +16,6 @@ public class GroceryListService implements IGroceryListService{
     @Autowired
     private IGroceryListDAO iGroceryListDAO;
 
-    @Autowired
-    private IProductDAO iProductDAO;
-
     @Override
     public void create(GroceryList groceryList) {
         this.iGroceryListDAO.save(groceryList);
@@ -27,8 +24,8 @@ public class GroceryListService implements IGroceryListService{
     @Override
     public List<GroceryList> findAll() { return this.iGroceryListDAO.findAll();}
 
-
     public GroceryList findOne(Long id) {
         return iGroceryListDAO.findOne(id);
     }
+
 }
