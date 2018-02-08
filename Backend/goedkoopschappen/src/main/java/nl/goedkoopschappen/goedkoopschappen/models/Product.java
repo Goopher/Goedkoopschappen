@@ -1,10 +1,12 @@
 package nl.goedkoopschappen.goedkoopschappen.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
 import java.util.List;
-
+import java.util.Set;
 
 
 @Entity(name="jumboproducts")
@@ -28,8 +30,9 @@ public class Product implements Serializable {
     private String productUrl;
     @Column
     private String imageUrl;
-    @ManyToMany(mappedBy = "productList")
-    private List<GroceryList> groceryLists;
+    @OneToMany(mappedBy = "product")
+    @JsonIgnore
+    private Set<GroceryListProduct> groceryListProducts;
 
     /*    @Column
     private int amount;*/
@@ -110,12 +113,12 @@ public class Product implements Serializable {
         this.description = description;
     }
 
-    public List<GroceryList> getGroceryLists() {
-        return groceryLists;
+    public Set<GroceryListProduct> getGroceryListProducts() {
+        return groceryListProducts;
     }
 
-    public void setGroceryLists(List<GroceryList> groceryLists) {
-        this.groceryLists = groceryLists;
+    public void setGroceryListProducts(Set<GroceryListProduct> groceryListProducts) {
+        this.groceryListProducts = groceryListProducts;
     }
 
     @Override

@@ -1,5 +1,7 @@
 package nl.goedkoopschappen.goedkoopschappen.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 import java.sql.Timestamp;
@@ -20,13 +22,10 @@ public class GroceryList {
     @Column
     private Timestamp timestamp;
 
-    @ManyToMany
-    @JoinTable(
-            name = "grocery_list_product",
-            joinColumns = {@JoinColumn(name="grocery_list_id")},
-            inverseJoinColumns = {@JoinColumn(name="product_id")}
-    )
-    private List<Product> productList;
+    @OneToMany(mappedBy = "groceryList")
+    @JsonIgnore
+    private Set<GroceryListProduct> groceryListProducts;
+
 
     public Long getGroceryListId() {
         return groceryListId;
@@ -52,12 +51,11 @@ public class GroceryList {
         this.timestamp = timestamp;
     }
 
-    public List<Product> getProductList() {
-        return productList;
+    public Set<GroceryListProduct> getGroceryListProducts() {
+        return groceryListProducts;
     }
 
-    public void setProductList(List<Product> productList) {
-        this.productList = productList;
+    public void setGroceryListProducts(Set<GroceryListProduct> groceryListProducts) {
+        this.groceryListProducts = groceryListProducts;
     }
-
 }
