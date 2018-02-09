@@ -11,7 +11,7 @@ export class DataService {
    }
 
    getProducts(searchString){
-      return this.http.get('http://localhost:8080/products', {params: {"productName": searchString} })
+      return this.http.get('http://81.206.45.176:50000/products', {params: {"productName": searchString} })
       .map(res => res.json());
    }
 
@@ -20,7 +20,7 @@ export class DataService {
      const headers = new Headers();
      headers.append('Content-type', 'application/json');
      const options = new RequestOptions({headers: headers});
-     return this.http.post("http://localhost:8080/addToCart", JSON.stringify(product), options)
+     return this.http.post("http://81.206.45.176:50000/addToCart", JSON.stringify(product), options)
      .pipe();
    }
 }
