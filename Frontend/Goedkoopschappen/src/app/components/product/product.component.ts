@@ -41,7 +41,7 @@ export class ProductComponent implements OnInit {
 
 }
 
-interface Product {
+export class Product {
   product_name:string;
   product_brand:string;
   description:string;
