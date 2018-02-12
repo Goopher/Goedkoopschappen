@@ -7,9 +7,6 @@ import java.util.List;
 
 public interface IUserDAO extends CrudRepository<User, Long> {
 
-    User findOne(Long userId);
-
-    List<User> findAll();
-
+    User findByUserName(String name);
 
 }

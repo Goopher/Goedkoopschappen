@@ -11,8 +11,9 @@ export class ProductComponent implements OnInit {
 
 
   @Input() products:Product[]
-  data:Product[]
-  product:Product;
+  
+  product = new Product();
+  data:Product[];
   searchString: String;
   constructor(private dataService:DataService) { }
 

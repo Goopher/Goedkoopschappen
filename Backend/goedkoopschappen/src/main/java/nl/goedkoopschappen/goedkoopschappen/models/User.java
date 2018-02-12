@@ -1,5 +1,6 @@
 package nl.goedkoopschappen.goedkoopschappen.models;
 
+        import org.codehaus.jackson.annotate.JsonIgnore;
         import org.hibernate.validator.constraints.Email;
 
         import javax.persistence.Column;
@@ -15,6 +16,9 @@ public class User {
     private Long userId;
 
     @Column
+    private String userName;
+
+    @Column
     private String firstName;
 
     @Column
@@ -24,6 +28,7 @@ public class User {
     private String email;
 
     @Column
+    @JsonIgnore
     private String password;
 
     public Long getUserId() {
@@ -32,6 +37,14 @@ public class User {
 
     public void setUserId(Long userId) {
         this.userId = userId;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getFirstName() {

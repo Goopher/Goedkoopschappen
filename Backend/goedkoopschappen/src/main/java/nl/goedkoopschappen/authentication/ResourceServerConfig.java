@@ -12,7 +12,7 @@ import org.springframework.security.oauth2.provider.error.OAuth2AccessDeniedHand
 @EnableResourceServer
 public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
-    private static final String RESOURCE_ID = "resouce_id";
+    private static final String RESOURCE_ID = "resource_id";
 
     @Override
     public void configure(ResourceServerSecurityConfigurer resources) {
