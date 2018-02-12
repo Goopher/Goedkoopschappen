@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { DataService } from '../../services/data.service'
+import { Product } from './product.model'
 
 @Component({
   selector: 'app-product',
@@ -9,7 +10,8 @@ import { DataService } from '../../services/data.service'
 export class ProductComponent implements OnInit {
 
 
-  @Input() products:Product[]
+  @Input() 
+  products:Product[]
   data:Product[]
   product:Product;
 
@@ -41,12 +43,4 @@ export class ProductComponent implements OnInit {
 
 }
 
-export class Product {
-  product_name:string;
-  product_brand:string;
-  description:string;
-  house_brand:boolean;
-  price:number;
-  product_url:string;
-  image_url:string;
-}
+
