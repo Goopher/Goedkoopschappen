@@ -22,4 +22,5 @@ export class DataService {
      return this.http.post("http://localhost:8080/addToCart", JSON.stringify(product), this.headers)
      .pipe();
    }
+
 }

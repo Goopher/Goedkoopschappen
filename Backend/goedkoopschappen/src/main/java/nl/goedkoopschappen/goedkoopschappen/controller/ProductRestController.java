@@ -2,9 +2,11 @@ package nl.goedkoopschappen.goedkoopschappen.controller;
 
 
 import nl.goedkoopschappen.goedkoopschappen.models.GroceryList;
+import nl.goedkoopschappen.goedkoopschappen.models.GroceryListProduct;
 import nl.goedkoopschappen.goedkoopschappen.models.Product;
 
 
+import nl.goedkoopschappen.goedkoopschappen.services.IGroceryListProductService;
 import nl.goedkoopschappen.goedkoopschappen.services.IGroceryListService;
 import nl.goedkoopschappen.goedkoopschappen.services.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,11 +28,11 @@ public class ProductRestController {
     @Autowired
     private IGroceryListService iGroceryListService;
 
-    private String currentQuery = "";
+    @Autowired
+    private IGroceryListProductService iGroceryListProductService;
 
     @RequestMapping(value = "/products", params = "productName")
     public List<Product> home (@RequestParam(value = "productName")String searchString){
-        currentQuery = searchString;
         return iProductService.findByProductNameContaining(searchString);
     }
 
@@ -38,16 +40,32 @@ public class ProductRestController {
     public String addToList( @RequestBody Product product){
 
         GroceryList groceryList = iGroceryListService.findOne(1L);
-
-
         if(groceryList == null) {
             iGroceryListService.create(new GroceryList());
             groceryList = iGroceryListService.findOne(1L);
         }
 
-        groceryList.getProductList().add(product);
-        iGroceryListService.create(groceryList);
+        GroceryListProduct groceryListProduct = iGroceryListProductService.findByProductAndGroceryList(product, groceryList);
+        if(groceryListProduct == null){
+            GroceryListProduct gLP = new GroceryListProduct();
+            gLP.setGroceryList(groceryList);
+            gLP.setProduct(product);
+            gLP.setAmount(1);
+            iGroceryListProductService.create(gLP);
+        } else {
+            groceryListProduct.setAmount(groceryListProduct.getAmount()+1);
+            iGroceryListProductService.create(groceryListProduct);
+        }
+
         System.out.println("Product added to grocery list, ProductID: " + product.toString() + " , grocery list ID: " + groceryList.getGroceryListId());
         return "Product added to grocery list, ProductID: " + product.toString() + " , grocery list ID: " + groceryList.getGroceryListId();
     }
+
+    @RequestMapping(value = "/grocerylist", params = "listId")
+    public GroceryList getGroceryList(@RequestParam(value = "listId")Long id){
+
+        return iGroceryListService.findOne(id);
+    }
+
+
 }
