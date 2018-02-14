@@ -16,7 +16,7 @@ import java.util.List;
 
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+//@CrossOrigin(origins = "http://localhost:4200")
 public class ProductRestController {
 
 
@@ -48,6 +48,6 @@ public class ProductRestController {
         groceryList.getProductList().add(product);
         iGroceryListService.create(groceryList);
         System.out.println("Product added to grocery list, ProductID: " + product.toString() + " , grocery list ID: " + groceryList.getGroceryListId());
-        return "Hoi";
+        return "Product added to grocery list, ProductID: " + product.toString() + " , grocery list ID: " + groceryList.getGroceryListId();
     }
 }

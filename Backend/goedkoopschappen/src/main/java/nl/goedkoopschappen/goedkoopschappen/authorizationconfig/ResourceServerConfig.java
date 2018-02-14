@@ -1,4 +1,4 @@
-package nl.goedkoopschappen.authentication;
+package nl.goedkoopschappen.goedkoopschappen.authorizationconfig;
 
 
 import org.springframework.context.annotation.Configuration;
@@ -20,13 +20,15 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     }
 
     @Override
-    public void configure (HttpSecurity http) throws Exception {
+    public void configure(HttpSecurity http) throws Exception {
         http.
                 anonymous().disable()
                 .authorizeRequests()
-                .antMatchers("/users/**").authenticated()
+                .antMatchers("/").permitAll()
+                //.antMatchers("/**").authenticated()
+                .antMatchers("/products/**").access("hasRole('ADMIN')")
+                .antMatchers("/users/**").access("hasRole('ADMIN')")
                 .and().exceptionHandling().accessDeniedHandler(new OAuth2AccessDeniedHandler());
     }
-
 
 }

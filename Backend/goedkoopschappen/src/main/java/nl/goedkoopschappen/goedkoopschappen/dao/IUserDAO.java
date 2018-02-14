@@ -2,11 +2,9 @@ package nl.goedkoopschappen.goedkoopschappen.dao;
 
 import nl.goedkoopschappen.goedkoopschappen.models.User;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
+@Repository
 public interface IUserDAO extends CrudRepository<User, Long> {
-
-    User findByUserName(String name);
-
+    User findByUsername(String username);
 }

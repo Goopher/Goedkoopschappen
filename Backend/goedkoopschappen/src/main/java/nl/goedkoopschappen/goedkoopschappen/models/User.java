@@ -1,74 +1,39 @@
 package nl.goedkoopschappen.goedkoopschappen.models;
 
-        import org.codehaus.jackson.annotate.JsonIgnore;
-        import org.hibernate.validator.constraints.Email;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
-        import javax.persistence.Column;
-        import javax.persistence.Entity;
-        import javax.persistence.GeneratedValue;
-        import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class User {
 
     @Id
-    @GeneratedValue
-    private Long userId;
-
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    private long id;
     @Column
-    private String userName;
-
-    @Column
-    private String firstName;
-
-    @Column
-    private String lastName;
-
-    @Column
-    private String email;
-
+    private String username;
     @Column
     @JsonIgnore
     private String password;
+    @Column
+    private long salary;
+    @Column
+    private int age;
 
-    public Long getUserId() {
-        return userId;
+    public long getId() {
+        return id;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setId(long id) {
+        this.id = id;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -77,5 +42,21 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public long getSalary() {
+        return salary;
+    }
+
+    public void setSalary(long salary) {
+        this.salary = salary;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
     }
 }
