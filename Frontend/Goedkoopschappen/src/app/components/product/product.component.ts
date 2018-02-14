@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { DataService } from '../../services/data.service'
+import { Product } from '../models/product';
 
 @Component({
   selector: 'app-product',
@@ -10,9 +11,10 @@ export class ProductComponent implements OnInit {
 
 
   @Input() products:Product[]
-  data:Product[]
-  product:Product;
-
+  
+  product = new Product();
+  data:Product[];
+  searchString: String;
   constructor(private dataService:DataService) { }
 
   ngOnInit() {
@@ -23,8 +25,9 @@ export class ProductComponent implements OnInit {
     if (event.key == "Enter") {
       this.dataService.getProducts(searchString).subscribe((products) => {
         this.products = products;
+        this.searchString=searchString;
         this.data = this.products.slice(0,15);
-        console.log(products)
+        console.log(this.data.length)
       });
     }
   }
@@ -39,14 +42,4 @@ export class ProductComponent implements OnInit {
   }
 
 
-}
-
-interface Product {
-  product_name:string;
-  product_brand:string;
-  description:string;
-  house_brand:boolean;
-  price:number;
-  product_url:string;
-  image_url:string;
 }
