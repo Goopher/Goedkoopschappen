@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { HttpHeaders } from '@angular/common/http'
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import 'rxjs/add/operator/map';
-import { Product } from '../components/product/product.model';
+import { Product } from '../components/models/product';
 import { Observable } from 'rxjs/Observable';
 
 @Injectable()
@@ -16,6 +15,13 @@ export class DataService {
 
    getProducts(searchString): Observable<Product[]>{
       return this.http.get<Product[]>('http://localhost:8080/products', {params: {"productName": searchString} });
+   }
+
+
+   addProductToCart(product) {
+     console.log(product);
+     return this.http.post("http://localhost:8080/addToCart", JSON.stringify(product), this.headers)
+     .pipe();
    }
 
    addProductToCart(product) {

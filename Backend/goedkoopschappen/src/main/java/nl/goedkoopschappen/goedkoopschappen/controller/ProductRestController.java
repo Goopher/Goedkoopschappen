@@ -61,6 +61,7 @@ public class ProductRestController {
 
         System.out.println("Product added to grocery list, ProductID: " + product.toString() + " , grocery list: " + groceryList.getGroceryListName());
         return "Product: " + product.getProductName() + " added to List: " + groceryList.getGroceryListName();
+
     }
 
     @RequestMapping(value = "/groceryList", params = "listId")
