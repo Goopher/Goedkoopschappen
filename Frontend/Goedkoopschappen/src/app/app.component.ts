@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../app/services/data.service'
+import { Product } from '../app/components/product/product.model'
 
 
 
@@ -21,12 +22,3 @@ export class AppComponent implements OnInit {
 }
 
 
-interface Product {
-  product_name: string;
-  product_brand: string;
-  description: string;
-  house_brand: boolean;
-  price: number;
-  product_url: string;
-  image_url: string;
-}

@@ -13,6 +13,8 @@ public interface IGroceryListProductDAO extends CrudRepository<GroceryListProduc
 
     List<GroceryListProduct> findAll();
 
+    List<GroceryListProduct> findByGroceryList(GroceryList groceryList);
+
     GroceryListProduct findByProductAndGroceryList(Product product, GroceryList groceryList);
 
 

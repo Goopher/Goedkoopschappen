@@ -10,11 +10,13 @@ import { Product } from '../models/product';
 export class ProductComponent implements OnInit {
 
 
+
   @Input() products:Product[]
   
   product = new Product();
   data:Product[];
   searchString: String;
+  
   constructor(private dataService:DataService) { }
 
   ngOnInit() {

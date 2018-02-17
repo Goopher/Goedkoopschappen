@@ -17,10 +17,16 @@ export class DataService {
       return this.http.get<Product[]>('http://localhost:8080/products', {params: {"productName": searchString} });
    }
 
+
    addProductToCart(product) {
      console.log(product);
      return this.http.post("http://localhost:8080/addToCart", JSON.stringify(product), this.headers)
      .pipe();
    }
 
+   addProductToCart(product) {
+     console.log(product);
+     return this.http.post("http://localhost:8080/addToCart", JSON.stringify(product))
+     .pipe();
+   }
 }

@@ -22,8 +22,11 @@ public class GroceryListProductService implements IGroceryListProductService {
     public List<GroceryListProduct> findAll() { return this.iGroceryListProductDAO.findAll();}
 
     @Override
-    public GroceryListProduct findOne(Long groceryListId, Long productId) {
-        return null;
+    public List<GroceryListProduct> findByGroceryList(GroceryList groceryList){ return iGroceryListProductDAO.findByGroceryList(groceryList);}
+
+    @Override
+    public GroceryListProduct findOne(Long groceryListId) {
+        return iGroceryListProductDAO.findOne(groceryListId);
     }
 
     @Override
