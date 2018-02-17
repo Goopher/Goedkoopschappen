@@ -13,7 +13,9 @@ public interface IGroceryListProductService {
 
     List<GroceryListProduct> findAll();
 
-    GroceryListProduct findOne(Long groceryListId, Long productId);
+    GroceryListProduct findOne(Long groceryListId);
+
+    List<GroceryListProduct> findByGroceryList(GroceryList groceryList);
 
     GroceryListProduct findByProductAndGroceryList(Product product, GroceryList groceryList);
 

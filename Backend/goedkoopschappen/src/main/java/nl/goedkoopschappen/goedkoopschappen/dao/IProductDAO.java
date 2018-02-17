@@ -9,7 +9,7 @@ import java.util.List;
 public interface IProductDAO extends JpaRepository<Product, Long> {
     List<Product> findAll();
 
-    List<Product> findByProductNameContaining(String searchString);
+    List<Product> findByProductNameContainingOrderByPriceAsc(String searchString);
 
     Product findByProductId(Long productId);
 }

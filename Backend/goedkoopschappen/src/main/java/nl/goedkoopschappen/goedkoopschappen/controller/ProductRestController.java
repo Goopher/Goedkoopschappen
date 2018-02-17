@@ -14,11 +14,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 public class ProductRestController {
 
 
@@ -37,12 +39,12 @@ public class ProductRestController {
     }
 
     @PostMapping(value="/addToCart")
-    public String addToList( @RequestBody Product product){
+    public String addToList( @RequestParam(value="groceryListId") Long id, @RequestBody Product product){
 
-        GroceryList groceryList = iGroceryListService.findOne(1L);
+        GroceryList groceryList = iGroceryListService.findOne(id);
         if(groceryList == null) {
             iGroceryListService.create(new GroceryList());
-            groceryList = iGroceryListService.findOne(1L);
+            groceryList = iGroceryListService.findOne(id);
         }
 
         GroceryListProduct groceryListProduct = iGroceryListProductService.findByProductAndGroceryList(product, groceryList);
@@ -57,14 +59,33 @@ public class ProductRestController {
             iGroceryListProductService.create(groceryListProduct);
         }
 
-        System.out.println("Product added to grocery list, ProductID: " + product.toString() + " , grocery list ID: " + groceryList.getGroceryListId());
-        return "Hoi";
+        System.out.println("Product added to grocery list, ProductID: " + product.toString() + " , grocery list: " + groceryList.getGroceryListName());
+        return "Product: " + product.getProductName() + " added to List: " + groceryList.getGroceryListName();
     }
 
-    @RequestMapping(value = "/grocerylist", params = "listId")
-    public GroceryList getGroceryList(@RequestParam(value = "listId")Long id){
+    @RequestMapping(value = "/groceryList", params = "listId")
+    public List<GroceryListProduct> getGroceryList(@RequestParam(value = "listId")Long id){
 
-        return iGroceryListService.findOne(id);
+        return iGroceryListProductService.findByGroceryList(iGroceryListService.findOne(id));
+    }
+
+    @RequestMapping(value = "/groceryLists")
+    public List<GroceryListProduct> getGroceryLists(){
+
+        return iGroceryListProductService.findAll();
+    }
+
+    @PostMapping(value="/createGroceryList")
+    public String createGroceryList(@RequestParam(value = "groceryListName")String name){
+
+        Timestamp timestamp = Timestamp.valueOf(LocalDateTime.now());
+        GroceryList groceryList = new GroceryList();
+        groceryList.setGroceryListName(name);
+        groceryList.setTimestamp(timestamp);
+
+        iGroceryListService.create(groceryList);
+
+        return "New Grocery List Created";
     }
 
 
