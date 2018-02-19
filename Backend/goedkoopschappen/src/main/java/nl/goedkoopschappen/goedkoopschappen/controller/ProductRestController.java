@@ -12,11 +12,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin
 @RequestMapping("/api")
 public class ProductRestController {
 
@@ -29,15 +30,16 @@ public class ProductRestController {
 
     private String currentQuery = "";
 
+
     @RequestMapping(value = "/products", params = "productName")
-    public List<Product> home (@RequestParam(value = "productName")String searchString){
+    public List<Product> findProductsByString (@RequestParam(value = "productName")String searchString){
         currentQuery = searchString;
         return iProductService.findByProductNameContaining(searchString);
     }
 
     @PostMapping(value="/addToCart")
     public String addToList( @RequestBody Product product){
-
+        System.out.println("Requested!");
         GroceryList groceryList = iGroceryListService.findOne(1L);
 
 

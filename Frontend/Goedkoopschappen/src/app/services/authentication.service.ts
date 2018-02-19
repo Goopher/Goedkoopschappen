@@ -23,11 +23,11 @@ export class AuthenticationService {
     headers = headers.append("Content-Type", "application/x-www-form-urlencoded")
     headers = headers.append("Accept", "application/json")
     const body = JSON.stringify({username: username, password: password, grant_type:'password'});
-
+    console.log(headers)
     console.log(body)
     return this.http.post("http://localhost:8080/oauth/token",body, {headers: headers});
 
 
-  }
+  }npm
 
 }

@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from '../app/services/data.service'
+import { DataService } from '../app/services/data.service';
+import { Product } from './components/models/product';
+import { NgForm } from '@angular/forms/src/directives/ng_form';
+import { ProductComponent } from './components/product/product.component';
 
 
 
@@ -11,22 +14,10 @@ import { DataService } from '../app/services/data.service'
 export class AppComponent implements OnInit {
   title = 'app';
   products: Product[];
-  searchString: string;
 
-
-
-  constructor() {  }
+  constructor() {}
   ngOnInit(){}
 
-}
+  
 
-
-interface Product {
-  product_name: string;
-  product_brand: string;
-  description: string;
-  house_brand: boolean;
-  price: number;
-  product_url: string;
-  image_url: string;
 }
