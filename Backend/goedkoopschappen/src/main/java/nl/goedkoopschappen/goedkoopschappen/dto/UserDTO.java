@@ -1,22 +1,15 @@
-package nl.goedkoopschappen.goedkoopschappen.models;
+package nl.goedkoopschappen.goedkoopschappen.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import javax.persistence.Column;
 
-import javax.persistence.*;
+public class UserDTO {
 
-@Entity
-public class User {
-
-    @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
     private long id;
-    @Column
+
     private String username;
-    @Column
-    private String password;
-    @Column
+
     private long salary;
-    @Column
+
     private int age;
 
     public long getId() {
@@ -33,14 +26,6 @@ public class User {
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public long getSalary() {

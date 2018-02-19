@@ -1,5 +1,6 @@
 package nl.goedkoopschappen.goedkoopschappen.controller;
 
+import nl.goedkoopschappen.goedkoopschappen.dto.UserDTO;
 import nl.goedkoopschappen.goedkoopschappen.models.Product;
 import nl.goedkoopschappen.goedkoopschappen.models.User;
 import nl.goedkoopschappen.goedkoopschappen.services.UserService;
@@ -9,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/api")
 public class UserController {
 
     @Autowired
@@ -21,12 +22,18 @@ public class UserController {
     }
 
     @RequestMapping(value = "/searchUser", params = "username")
-    public User findByUserName (@RequestParam(value = "username")String username){
-        System.out.println("RETURN USER");
-        return userService.findByUsername(username);
+    public UserDTO findByUserName (@RequestParam(value = "username")String username){
+        User user = userService.findByUsername(username);
+        UserDTO userDTO = new UserDTO();
+        userDTO.setUsername(user.getUsername());
+        userDTO.setId(user.getId());
+        userDTO.setSalary(user.getSalary());
+        userDTO.setAge(user.getAge());
+        return userDTO;
+
     }
 
-    @RequestMapping(value = "/user", method = RequestMethod.POST)
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
     public User create(@RequestBody User user){
         return userService.save(user);
     }
