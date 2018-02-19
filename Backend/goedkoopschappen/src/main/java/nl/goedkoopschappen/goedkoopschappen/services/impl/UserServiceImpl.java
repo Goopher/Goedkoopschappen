@@ -8,6 +8,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -19,6 +20,9 @@ public class UserServiceImpl implements UserDetailsService, UserService {
 
     @Autowired
     private IUserDAO iUserDAO;
+
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {
         User user = iUserDAO.findByUsername(userId);
@@ -48,7 +52,14 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     }
 
     @Override
-    public User save(User user) {
-        return iUserDAO.save(user);
+    public User save(User user) throws IllegalArgumentException {
+        if(iUserDAO.findByUsername(user.getUsername()) != null){
+            throw new IllegalArgumentException("User already exists");
+        }
+
+        User saveUser = new User();
+        saveUser.setUsername(user.getUsername());
+        saveUser.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        return iUserDAO.save(saveUser);
     }
 }

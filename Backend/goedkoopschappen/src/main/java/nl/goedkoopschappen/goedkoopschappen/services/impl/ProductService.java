@@ -1,7 +1,8 @@
-package nl.goedkoopschappen.goedkoopschappen.services;
+package nl.goedkoopschappen.goedkoopschappen.services.impl;
 
 import nl.goedkoopschappen.goedkoopschappen.dao.IProductDAO;
 import nl.goedkoopschappen.goedkoopschappen.models.Product;
+import nl.goedkoopschappen.goedkoopschappen.services.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

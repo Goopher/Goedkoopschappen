@@ -1,7 +1,7 @@
 <mdb-navbar SideClass="navbar fixed-top navbar-expand-lg navbar-dark bg-blue scrolling-navbar" [containerInside]="false">
     <logo>
         <a class="logo navbar-brand" href="#">
-            <img src="..\assets\GKAlogo.svg" height="35px">
+            <img src="..\assets\GKAlogo.svg" height="30px">
         </a>
     </logo>
     <links>
@@ -17,30 +17,9 @@
             </li>
 
         </ul>
-        <form class="form-inline">
-            <input class="form-control mr-sm-2" matInput type="text" name="searchBox" placeholder="Search" aria-label="Search" [(ngModel)]="searchString"
-                (keydown)="productRef.searchProducts($event, searchString)">
-        </form>
-        <ul class="navbar-nav nav-flex-icons">
-            <li class="nav-item waves-light" mdbRippleRadius>
-                <a class="nav-link">
-                    <i class="fa fa-facebook"></i>
-                </a>
-            </li>
-            <li class="nav-item waves-light" mdbRippleRadius>
-                <a class="nav-link">
-                    <i class="fa fa-twitter"></i>
-                </a>
-            </li>
-            <li class="nav-item waves-light" mdbRippleRadius>
-                <a class="nav-link">
-                    <i class="fa fa-instagram"></i>
-                </a>
-            </li>
-        </ul>
     </links>
 </mdb-navbar>
 
 <div class="content" style="padding-top:100px; overflow:hidden">
-    <app-product #productRef [products]="products"></app-product>
+    <router-outlet></router-outlet>
 </div>
