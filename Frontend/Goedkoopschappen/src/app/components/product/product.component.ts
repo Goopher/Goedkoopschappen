@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { DataService } from '../../services/data.service'
 import { Product } from './product.model'
+import { DecimalPipe } from '@angular/common';
 
 @Component({
   selector: 'app-product',
@@ -10,8 +11,7 @@ import { Product } from './product.model'
 export class ProductComponent implements OnInit {
 
 
-  @Input() 
-  products:Product[]
+  @Input() products:Product[]
   data:Product[]
   product:Product;
 

@@ -1,0 +1,31 @@
+<div class="row d-flex">
+      <div *ngFor="let grocerylistproduct of grocerylistproducts" class="col-lg-3 col-4 d-flex" style="padding-bottom: 50px;">
+        <!--Card-->
+        <div class="card">
+          <!--Card image-->
+          <div class="card-img-top" mdbRippleRadius>
+            <a href={{grocerylistproduct.product.productUrl}} target="blank">
+            <img src={{grocerylistproduct.product.imageUrl}} class="img-fluid" alt="">
+            </a>
+            <a>
+              <div class="mask"></div>
+            </a>
+          </div>
+          <!--Card image-->
+  
+          <!--Card content-->
+          <div class="card-body">
+            <h5 class="card-title">
+              <strong>{{ grocerylistproduct.product.productName }}</strong>
+            </h5>
+            <h6 class="card-subtitle">
+              € {{grocerylistproduct.product.price / 100 | number: '1.2'}}
+            </h6>
+          </div>
+          <!--Card content-->
+          
+        </div>
+        <!--Card-->
+  
+      </div>
+</div>

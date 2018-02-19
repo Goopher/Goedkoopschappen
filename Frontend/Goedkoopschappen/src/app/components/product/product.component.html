@@ -20,7 +20,7 @@
             <strong>{{ product.productName }}</strong>
           </h5>
           <h6 class="card-subtitle">
-            € {{product.price / 100}}
+            € {{product.price / 100 | number: '1.2'}}
           </h6>
         </div>
         <!--Card content-->

@@ -14,13 +14,17 @@ import { ProductComponent } from './components/product/product.component';
 
 
 import { DataService } from './services/data.service';
+import { GrocerylistComponent } from './components/grocerylist/grocerylist.component';
+import { GrocerylistproductComponent } from './components/grocerylist/grocerylistproduct/grocerylistproduct.component';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProductComponent
+    ProductComponent,
+    GrocerylistComponent,
+    GrocerylistproductComponent
   ],
   imports: [
     BrowserModule,
