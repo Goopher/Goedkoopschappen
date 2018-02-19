@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api")
+@CrossOrigin(origins = "http://localhost:4200")
 public class UserController {
 
     @Autowired
@@ -27,15 +28,13 @@ public class UserController {
         UserDTO userDTO = new UserDTO();
         userDTO.setUsername(user.getUsername());
         userDTO.setId(user.getId());
-        userDTO.setSalary(user.getSalary());
-        userDTO.setAge(user.getAge());
         return userDTO;
 
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public User create(@RequestBody User user){
-        return userService.save(user);
+    public void create(@RequestBody User user){
+        userService.save(user);
     }
 
     @RequestMapping(value = "/user/{id}", method = RequestMethod.DELETE)

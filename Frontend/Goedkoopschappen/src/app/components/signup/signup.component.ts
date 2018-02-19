@@ -9,6 +9,7 @@ import { AuthenticationService } from '../../services/authentication.service'
   styleUrls: ['./signup.component.scss']
 })
 export class SignupComponent implements OnInit {
+  registration_status : string;
 
   constructor(private authService: AuthenticationService) { }
 
@@ -18,7 +19,10 @@ export class SignupComponent implements OnInit {
   onSignup(form: NgForm) {
     const username = form.value.username;
     const password = form.value.password;
-    this.authService.signupUser(username, password);
+    this.authService.requestToken(username, password, "password")
+    .subscribe(
+    data=> this.registration_status = "Registration succesful",
+    error => this.registration_status = "Username already exists");
   }
 
 }

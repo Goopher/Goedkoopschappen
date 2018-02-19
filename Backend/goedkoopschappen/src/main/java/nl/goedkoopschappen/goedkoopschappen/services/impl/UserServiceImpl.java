@@ -52,7 +52,11 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     }
 
     @Override
-    public User save(User user) {
+    public User save(User user) throws IllegalArgumentException {
+        if(iUserDAO.findByUsername(user.getUsername()) != null){
+            throw new IllegalArgumentException("User already exists");
+        }
+
         User saveUser = new User();
         saveUser.setUsername(user.getUsername());
         saveUser.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
