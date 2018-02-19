@@ -1,8 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+<<<<<<< HEAD
 import { DataService } from '../app/services/data.service';
 import { Product } from './components/models/product';
 import { NgForm } from '@angular/forms/src/directives/ng_form';
 import { ProductComponent } from './components/product/product.component';
+=======
+import { DataService } from '../app/services/data.service'
+import { Product } from '../app/components/product/product.model'
+>>>>>>> master
 
 
 
@@ -20,4 +25,8 @@ export class AppComponent implements OnInit {
 
   
 
+<<<<<<< HEAD
 }
+=======
+
+>>>>>>> master

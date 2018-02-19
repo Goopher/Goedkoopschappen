@@ -16,6 +16,7 @@ export class ProductComponent implements OnInit {
   product = new Product();
   data = this.product[5];
   searchString: String;
+  
   constructor(private dataService:DataService) { }
 
   ngOnInit() {

@@ -2,9 +2,11 @@ package nl.goedkoopschappen.goedkoopschappen.controller;
 
 
 import nl.goedkoopschappen.goedkoopschappen.models.GroceryList;
+import nl.goedkoopschappen.goedkoopschappen.models.GroceryListProduct;
 import nl.goedkoopschappen.goedkoopschappen.models.Product;
 
 
+import nl.goedkoopschappen.goedkoopschappen.services.IGroceryListProductService;
 import nl.goedkoopschappen.goedkoopschappen.services.IGroceryListService;
 import nl.goedkoopschappen.goedkoopschappen.services.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletResponse;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 
 
@@ -28,29 +31,64 @@ public class ProductRestController {
     @Autowired
     private IGroceryListService iGroceryListService;
 
-    private String currentQuery = "";
+    @Autowired
+    private IGroceryListProductService iGroceryListProductService;
 
 
     @RequestMapping(value = "/products", params = "productName")
     public List<Product> findProductsByString (@RequestParam(value = "productName")String searchString){
-        currentQuery = searchString;
         return iProductService.findByProductNameContaining(searchString);
     }
 
     @PostMapping(value="/addToCart")
-    public String addToList( @RequestBody Product product){
-        System.out.println("Requested!");
-        GroceryList groceryList = iGroceryListService.findOne(1L);
-
-
+    public String addToList( @RequestParam(value="groceryListId") Long id, @RequestBody Product product){
+        GroceryList groceryList = iGroceryListService.findOne(id);
         if(groceryList == null) {
             iGroceryListService.create(new GroceryList());
-            groceryList = iGroceryListService.findOne(1L);
+            groceryList = iGroceryListService.findOne(id);
         }
 
-        groceryList.getProductList().add(product);
-        iGroceryListService.create(groceryList);
-        System.out.println("Product added to grocery list, ProductID: " + product.toString() + " , grocery list ID: " + groceryList.getGroceryListId());
-        return "Product added to grocery list, ProductID: " + product.toString() + " , grocery list ID: " + groceryList.getGroceryListId();
+        GroceryListProduct groceryListProduct = iGroceryListProductService.findByProductAndGroceryList(product, groceryList);
+        if(groceryListProduct == null){
+            GroceryListProduct gLP = new GroceryListProduct();
+            gLP.setGroceryList(groceryList);
+            gLP.setProduct(product);
+            gLP.setAmount(1);
+            iGroceryListProductService.create(gLP);
+        } else {
+            groceryListProduct.setAmount(groceryListProduct.getAmount()+1);
+            iGroceryListProductService.create(groceryListProduct);
+        }
+
+        System.out.println("Product added to grocery list, ProductID: " + product.toString() + " , grocery list: " + groceryList.getGroceryListName());
+        return "Product: " + product.getProductName() + " added to List: " + groceryList.getGroceryListName();
+
     }
+
+    @RequestMapping(value = "/groceryList", params = "listId")
+    public List<GroceryListProduct> getGroceryList(@RequestParam(value = "listId")Long id){
+
+        return iGroceryListProductService.findByGroceryList(iGroceryListService.findOne(id));
+    }
+
+    @RequestMapping(value = "/groceryLists")
+    public List<GroceryListProduct> getGroceryLists(){
+
+        return iGroceryListProductService.findAll();
+    }
+
+    @PostMapping(value="/createGroceryList")
+    public String createGroceryList(@RequestParam(value = "groceryListName")String name){
+
+        Timestamp timestamp = Timestamp.valueOf(LocalDateTime.now());
+        GroceryList groceryList = new GroceryList();
+        groceryList.setGroceryListName(name);
+        groceryList.setTimestamp(timestamp);
+
+        iGroceryListService.create(groceryList);
+
+        return "New Grocery List Created";
+    }
+
+
 }
