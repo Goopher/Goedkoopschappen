@@ -1,34 +1,41 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { GroceryList } from '../grocerylist.model';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { GroceryList } from '../../models/grocerylist.model';
 import { DataService } from '../../../services/data.service';
-import { GroceryListProduct } from './grocerylistproduct.model';
+import { GroceryListProduct } from '../../models/grocerylistproduct.model';
 import { Product } from '../../models/product';
+import { DecimalPipe } from '@angular/common';
 
 @Component({
   selector: 'app-grocerylistproduct',
   templateUrl: './grocerylistproduct.component.html',
   styleUrls: ['./grocerylistproduct.component.scss']
 })
-export class GrocerylistproductComponent implements OnInit {
+export class GrocerylistproductComponent implements OnInit, OnChanges {
 
 
-  @Input()
-  products:Product[];
-  product:Product;
-  grocerylist:GroceryList;
-  grocerylistproduct:GroceryListProduct;
+  @Input() grocerylist:GroceryList;
   grocerylistproducts:GroceryListProduct[];
-  show: boolean = false;
 
-  constructor(private dataService:DataService) { }
+  constructor(private dataService:DataService) {
+    
+   }
 
   ngOnInit() {
   }
 
-  getGroceryListProducts(listId){
+  ngOnChanges(){
+    console.log("Change detected in GLP")
+    if(this.grocerylist!=null){
+    console.log(this.grocerylist)
+    this.getGroceryListProducts(this.grocerylist);
+    console.log(this.grocerylistproducts)
+    }
+  }
 
-    console.log()
-    this.dataService.getGroceryListProducts(listId).subscribe((grocerylistproducts) => {
+  getGroceryListProducts(grocerylist){
+
+    console.log("GLP being gotten")
+    this.dataService.getGroceryListProducts(grocerylist.groceryListId).subscribe((grocerylistproducts) => {
       this.grocerylistproducts = grocerylistproducts;
     });
   
