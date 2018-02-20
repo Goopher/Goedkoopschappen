@@ -6,9 +6,9 @@
     </div>
   </form>
   <div class="row d-flex">
-    <div *ngIf="data.length === 0">
-          <h1>Je zoekopdracht '{{searchString}}' heeft niets opgeleverd.</h1>
-        </div>
+    <div *ngIf="data.length === 0 && searched">
+      <h1>Je zoekopdracht '{{searchString}}' heeft niets opgeleverd.</h1>
+    </div>
     <div *ngFor="let product of data" class="col-lg-3 col-4 d-flex" style="padding-bottom: 50px;">
       <!--Card-->
 

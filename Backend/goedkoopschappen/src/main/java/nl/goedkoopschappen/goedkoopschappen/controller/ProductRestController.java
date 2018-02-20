@@ -44,7 +44,11 @@ public class ProductRestController {
     public void addToList( @RequestParam(value="groceryListId") Long id, @RequestBody Product product){
         GroceryList groceryList = iGroceryListService.findOne(id);
         if(groceryList == null) {
-            iGroceryListService.create(new GroceryList());
+            GroceryList list = new GroceryList();
+            list.setGroceryListName("Auto created");
+            list.setTimestamp(Timestamp.valueOf(LocalDateTime.now()));
+            list.setTotalPrice(0);
+            iGroceryListService.create(list);
             groceryList = iGroceryListService.findOne(id);
         }
 

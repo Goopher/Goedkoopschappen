@@ -8,12 +8,6 @@ import { GroceryList } from './components/models/grocerylist.model';
 import { Router } from '@angular/router';
 
 
-import { GroceryList } from './components/models/grocerylist.model';
-
-
-
-
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',

@@ -15,7 +15,8 @@ export class ProductComponent implements OnInit {
 
   products:Product[];
   product = new Product();
-  data = this.product[5];
+  data = [];
+  searched = false;
   searchString: String;
   @Output() updates = new EventEmitter();
 
@@ -37,6 +38,7 @@ export class ProductComponent implements OnInit {
         this.products = products;
         this.searchString=searchString;
         this.data = this.products.slice(0,15);
+        this.searched = true;
         console.log(this.data.length)
       });
   }
