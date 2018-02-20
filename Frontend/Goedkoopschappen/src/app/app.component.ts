@@ -5,7 +5,7 @@ import { Product } from './components/models/product';
 import { NgForm } from '@angular/forms/src/directives/ng_form';
 import { ProductComponent } from './components/product/product.component';
 
-import { GroceryList } from './components/grocerylist/grocerylist.model';
+import { GroceryList } from './components/models/grocerylist.model';
 
 
 

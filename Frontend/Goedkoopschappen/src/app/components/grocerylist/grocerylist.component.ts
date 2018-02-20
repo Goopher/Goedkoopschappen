@@ -1,8 +1,10 @@
 import { Component, OnInit, Input, Output } from '@angular/core';
 
-import { GroceryList } from './grocerylist.model';
+
 import { DataService } from '../../services/data.service';
 import { Product } from '../models/product';
+import { GroceryList } from '../models/grocerylist.model';
+import { GroceryListProduct } from '../models/grocerylistproduct.model';
 
 @Component({
   selector: 'app-grocerylist',
@@ -11,11 +13,11 @@ import { Product } from '../models/product';
 })
 export class GrocerylistComponent implements OnInit {
 
-  @Input()
-  products:Product[];
-  product:Product;
-  @Input() grocerylist:GroceryList;
+  
+  
+  grocerylist:GroceryList;
   grocerylists:GroceryList[];
+  grocerylistproducts:GroceryListProduct[];
   show: boolean = false;
   
   constructor(private dataService:DataService) {
@@ -32,6 +34,11 @@ export class GrocerylistComponent implements OnInit {
       this.grocerylists = grocerylists;
     });
   
+  }
+
+  setGroceryList(grocerylist:GroceryList){
+    this.grocerylist = grocerylist;
+    console.log(this.grocerylist);
   }
 
   toggle(){

@@ -1,8 +1,10 @@
-<div *ngIf="show">
-  <div *ngFor="let grocerylist of grocerylists">
-    <div (click)="'grocerylistproductRef.getGroceryListProducts('+grocerylist.groceryListId+')'">
-    <li>{{ grocerylist.groceryListName }} ({{grocerylist.groceryListId}})</li> 
-    </div>
-  </div>
+  <div *ngIf="show" style="padding-top:100px;">
+  <table class="table-hover">
+  <tr *ngFor="let grocerylist of grocerylists" (click)="setGroceryList(grocerylist)">
+      <td>{{ grocerylist.groceryListName }} ({{grocerylist.groceryListId}})</td> 
+  </tr>  
+  </table>
+  <div> 
+  <app-grocerylistproduct [grocerylist]="grocerylist"></app-grocerylistproduct>
 </div>
-
+</div>
