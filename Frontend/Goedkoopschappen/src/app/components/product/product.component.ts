@@ -15,6 +15,8 @@ export class ProductComponent implements OnInit {
   data:Product[]
   product:Product;
 
+  searchString: String;
+  
   constructor(private dataService:DataService) { }
 
   ngOnInit() {
@@ -25,8 +27,9 @@ export class ProductComponent implements OnInit {
     if (event.key == "Enter") {
       this.dataService.getProducts(searchString).subscribe((products) => {
         this.products = products;
+        this.searchString=searchString;
         this.data = this.products.slice(0,15);
-        console.log(products)
+        console.log(this.data.length)
       });
     }
   }
@@ -42,5 +45,3 @@ export class ProductComponent implements OnInit {
 
 
 }
-
-

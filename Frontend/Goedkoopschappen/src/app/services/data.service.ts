@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import 'rxjs/add/operator/map';
-import { Product } from '../components/product/product.model';
+import { Product } from '../components/models/product';
 import { Observable } from 'rxjs/Observable';
 import { GroceryList } from '../components/grocerylist/grocerylist.model';
 import { GroceryListProduct } from '../components/grocerylist/grocerylistproduct/grocerylistproduct.model';
@@ -20,6 +20,15 @@ export class DataService {
    }
 
 
+<<<<<<< HEAD
+=======
+   addProductToCart(product) {
+     console.log(product);
+     return this.http.post("http://localhost:8080/addToCart", JSON.stringify(product), this.headers)
+     .pipe();
+   }
+
+>>>>>>> 9cae6d5056d88c05609166ef205d69e7db13ecfe
    addProductToCart(product) {
      console.log(product);
      return this.http.post("http://localhost:8080/addToCart", JSON.stringify(product), this.headers)
