@@ -20,7 +20,8 @@ import java.util.List;
 
 
 @RestController
-@CrossOrigin(origins = "*")
+@CrossOrigin
+@RequestMapping("/api")
 public class ProductRestController {
 
 
@@ -33,14 +34,14 @@ public class ProductRestController {
     @Autowired
     private IGroceryListProductService iGroceryListProductService;
 
+
     @RequestMapping(value = "/products", params = "productName")
-    public List<Product> home (@RequestParam(value = "productName")String searchString){
+    public List<Product> findProductsByString (@RequestParam(value = "productName")String searchString){
         return iProductService.findByProductNameContaining(searchString);
     }
 
     @PostMapping(value="/addToCart")
     public String addToList( @RequestParam(value="groceryListId") Long id, @RequestBody Product product){
-
         GroceryList groceryList = iGroceryListService.findOne(id);
         if(groceryList == null) {
             iGroceryListService.create(new GroceryList());

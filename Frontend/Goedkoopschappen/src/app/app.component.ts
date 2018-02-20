@@ -1,7 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from '../app/services/data.service'
-import { GroceryList } from './components/grocerylist/grocerylist.model';
+
+import { DataService } from '../app/services/data.service';
 import { Product } from './components/models/product';
+import { NgForm } from '@angular/forms/src/directives/ng_form';
+import { ProductComponent } from './components/product/product.component';
+
+import { GroceryList } from './components/grocerylist/grocerylist.model';
+
 
 
 
@@ -18,11 +23,9 @@ export class AppComponent implements OnInit {
   grocerylists:GroceryList[];
 
 
-
-
-  constructor() {  }
+  constructor() {}
   ngOnInit(){}
 
+  
+
 }
-
-

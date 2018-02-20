@@ -1,8 +1,14 @@
 <div class="container" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="loadMoreProducts()">
+    <form (ngSubmit)="onSubmit(f)" #f="ngForm">  
+  <div class="form-group">
+        <label for="product">Search</label>
+        <input type="text" id="product" name="product" ngModel class="form-control">
+      </div>
+      </form>
   <div class="row d-flex">
-      <div *ngIf="data.length === 0">
+      <!-- <div *ngIf="data.length === 0">
           <h1>Je zoekopdracht '{{searchString}}' heeft niets opgeleverd.</h1>
-        </div>
+        </div> -->
     <div *ngFor="let product of data" class="col-lg-3 col-4 d-flex" style="padding-bottom: 50px;">
       <!--Card-->
       
