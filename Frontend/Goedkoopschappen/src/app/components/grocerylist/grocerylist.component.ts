@@ -1,8 +1,11 @@
 import { Component, OnInit, Input, Output } from '@angular/core';
 
-import { GroceryList } from './grocerylist.model';
+
 import { DataService } from '../../services/data.service';
 import { Product } from '../models/product';
+import { GroceryList } from '../models/grocerylist.model';
+import { NgForm } from '@angular/forms';
+import { GroceryListProduct } from '../models/grocerylistproduct.model';
 
 @Component({
   selector: 'app-grocerylist',
@@ -11,12 +14,9 @@ import { Product } from '../models/product';
 })
 export class GrocerylistComponent implements OnInit {
 
-  @Input()
-  products:Product[];
-  product:Product;
-  @Input() grocerylist:GroceryList;
-  grocerylists:GroceryList[];
-  show: boolean = false;
+  grocerylist:GroceryList;
+  groceryListArray:GroceryList[];
+
   
   constructor(private dataService:DataService) {
     this.getAllGroceryLists();   
@@ -25,19 +25,29 @@ export class GrocerylistComponent implements OnInit {
   ngOnInit() {
   }
 
-  getAllGroceryLists(){
-    
-    console.log()
+  onSubmit(form:NgForm){
+    let newList = new GroceryList();
+    newList.groceryListName = form.value.groceryList;  
+    console.log(newList);
+    this.dataService.createGroceryList(newList).subscribe((data => this.groceryListArray.push(data)), error => console.log(error));
+  }
+
+  deleteGroceryList(grocerylist:GroceryList){
+    this.dataService.deleteGroceryList(grocerylist).subscribe();
+    let index = this.groceryListArray.indexOf(grocerylist);
+    if(index > -1){
+    this.groceryListArray.splice(index, 1);
+    }
+  }
+
+  getAllGroceryLists(){    
+    console.log("Getting grocerylists...")
     this.dataService.getGroceryLists().subscribe((grocerylists) => {
-      this.grocerylists = grocerylists;
+      this.groceryListArray = grocerylists;
+      console.log(this.groceryListArray);
     });
   
-  }
-
-  toggle(){
-    this.show = !this.show;
-  }
-
+    }
   
 
 }

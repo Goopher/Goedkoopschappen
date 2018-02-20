@@ -16,7 +16,7 @@ public class GroceryListProductService implements IGroceryListProductService {
     private IGroceryListProductDAO iGroceryListProductDAO;
 
     @Override
-    public void create(GroceryListProduct groceryListProduct) {  this.iGroceryListProductDAO.save(groceryListProduct);}
+    public GroceryListProduct create(GroceryListProduct groceryListProduct) {  return this.iGroceryListProductDAO.save(groceryListProduct);}
 
     @Override
     public List<GroceryListProduct> findAll() { return this.iGroceryListProductDAO.findAll();}
@@ -32,5 +32,10 @@ public class GroceryListProductService implements IGroceryListProductService {
     @Override
     public GroceryListProduct findByProductAndGroceryList(Product product, GroceryList groceryList) {
         return iGroceryListProductDAO.findByProductAndGroceryList(product, groceryList);
+    }
+
+    @Override
+    public void delete(Long id) {
+        iGroceryListProductDAO.delete(id);
     }
 }

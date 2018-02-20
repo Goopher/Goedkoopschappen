@@ -1,8 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { GroceryList } from '../grocerylist.model';
+
 import { DataService } from '../../../services/data.service';
-import { GroceryListProduct } from './grocerylistproduct.model';
+
 import { Product } from '../../models/product';
+import { GroceryList } from '../../models/grocerylist.model';
+import { GroceryListProduct } from '../../models/grocerylistproduct.model';
 
 @Component({
   selector: 'app-grocerylistproduct',

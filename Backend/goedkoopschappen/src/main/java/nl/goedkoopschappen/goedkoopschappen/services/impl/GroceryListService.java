@@ -20,7 +20,22 @@ public class GroceryListService implements IGroceryListService {
 
     @Override
     public GroceryList create(GroceryList groceryList) {
-       return this.iGroceryListDAO.save(groceryList);
+        int totalPrice = 0;
+        System.out.println("In service: " + groceryList.getGroceryListName());
+        if (groceryList.getGroceryListProducts() != null) {
+            for (GroceryListProduct product : groceryList.getGroceryListProducts()) {
+                if (product != null) {
+                    totalPrice += product.getProduct().getPrice() * product.getAmount();
+                }
+            }
+        }
+        groceryList.setTotalPrice(totalPrice);
+        return this.iGroceryListDAO.save(groceryList);
+    }
+
+
+    public void delete(Long id) {
+        iGroceryListDAO.delete(id);
     }
 
     @Override

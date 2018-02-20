@@ -39,7 +39,7 @@ export class ProductComponent implements OnInit {
       });
   }
 
-  addProductToCard(product:Product) {
+  addProductToCart(product:Product) {
     console.log(product);
     this.dataService.addProductToCart(product).subscribe();
     

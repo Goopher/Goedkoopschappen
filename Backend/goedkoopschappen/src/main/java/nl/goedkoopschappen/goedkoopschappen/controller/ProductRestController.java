@@ -17,13 +17,13 @@ import org.springframework.web.bind.annotation.*;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 
 
 @RestController
 @CrossOrigin
 @RequestMapping("/api")
 public class ProductRestController {
-
 
     @Autowired
     private IProductService iProductService;
@@ -50,16 +50,15 @@ public class ProductRestController {
 
         GroceryListProduct groceryListProduct = iGroceryListProductService.findByProductAndGroceryList(product, groceryList);
         if(groceryListProduct == null){
-            GroceryListProduct gLP = new GroceryListProduct();
-            gLP.setGroceryList(groceryList);
-            gLP.setProduct(product);
-            gLP.setAmount(1);
-            iGroceryListProductService.create(gLP);
+            groceryListProduct = new GroceryListProduct();
+            groceryListProduct.setGroceryList(groceryList);
+            groceryListProduct.setProduct(product);
+            groceryListProduct.setAmount(1);
+            iGroceryListProductService.create(groceryListProduct);
         } else {
             groceryListProduct.setAmount(groceryListProduct.getAmount()+1);
-            iGroceryListProductService.create(groceryListProduct);
+            groceryListProduct = iGroceryListProductService.create(groceryListProduct);
         }
-
         System.out.println("Product added to grocery list, ProductID: " + product.toString() + " , grocery list: " + groceryList.getGroceryListName());
     }
 
@@ -79,16 +78,33 @@ public class ProductRestController {
     }
 
     @PostMapping(value="/createGroceryList")
-    public String createGroceryList(@RequestParam(value = "groceryListName")String name){
+    public GroceryList createGroceryList(@RequestBody GroceryList list){
 
         Timestamp timestamp = Timestamp.valueOf(LocalDateTime.now());
-        GroceryList groceryList = new GroceryList();
-        groceryList.setGroceryListName(name);
+        GroceryList groceryList = list;
+        groceryList.setGroceryListName(list.getGroceryListName());
         groceryList.setTimestamp(timestamp);
 
         GroceryList newGroceryList = iGroceryListService.create(groceryList);
+        System.out.println("New grocery list created with id: " + newGroceryList.getGroceryListId());
+        return newGroceryList;
 
-        return "New grocery list created with id: " + newGroceryList.getGroceryListId();
+    }
+
+    @DeleteMapping(value="/deleteGroceryList")
+    public void deleteGroceryList(@RequestParam Long listId) {
+        GroceryList list = iGroceryListService.findOne(listId);
+        List<GroceryListProduct> productList = iGroceryListProductService.findByGroceryList(list);
+        for (GroceryListProduct product :
+                productList) {
+            iGroceryListProductService.delete(product.getGroceryListProductId());
+        }
+        iGroceryListService.delete(listId);
+    }
+
+    @DeleteMapping(value="/deleteGroceryListProduct")
+    public void deleteGroceryListProduct(@RequestParam Long id) {
+        iGroceryListProductService.delete(id);
     }
 
 

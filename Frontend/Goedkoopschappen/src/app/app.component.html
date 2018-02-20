@@ -7,23 +7,20 @@
     <links>
 
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item active waves-light" mdbRippleRadius>
-                <a class="nav-link">Home
-                    <span class="sr-only">(current)</span>
-                </a>
+            <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="nav-item waves-light" mdbRippleRadius>
+                <a routerLink="/" class="nav-link">Home</a>
             </li>
-            <li class="nav-item waves-light" mdbRippleRadius>
-                <a (click)="grocerylistRef.toggle()" class="nav-link">Winkelwagen</a>
+            <li routerLinkActive="active" class="nav-item waves-light" mdbRippleRadius>
+                <a routerLink="/products" class="nav-link">Zoek producten</a>
+            </li>
+            <li routerLinkActive="active" class="nav-item waves-light" mdbRippleRadius>
+                <a routerLink="/grocerylists" class="nav-link">Boodschappenlijstjes</a>
             </li>
 
         </ul>
     </links>
 </mdb-navbar>
 
-<div class="content">
-    <app-grocerylist #grocerylistRef></app-grocerylist>
-</div>
-
-<div class="content" style="padding-top:100px; overflow:hidden">
+<div class="content col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2" style="padding-top:100px; overflow:hidden">
     <router-outlet></router-outlet>
 </div>

@@ -1,8 +1,18 @@
-<div *ngIf="show">
-  <div *ngFor="let grocerylist of grocerylists">
+<form (ngSubmit)="onSubmit(f)" #f="ngForm">
+  <div class="form-group">
+    <label for="groceryList">Kies een naam voor uw lijst:</label>
+    <input type="text" id="groceryList" name="groceryList" ngModel class="form-control">
+  </div>
+</form>
+
+
+<div>
+  <div *ngFor="let grocerylist of groceryListArray">
     <div (click)="'grocerylistproductRef.getGroceryListProducts('+grocerylist.groceryListId+')'">
-    <li>{{ grocerylist.groceryListName }} ({{grocerylist.groceryListId}})</li> 
+      <li>{{ grocerylist.groceryListName }} ({{grocerylist.totalPrice}})
+        <button class="btn-xs btn-danger" (click)="deleteGroceryList(grocerylist)">-</button>
+      </li>
+      
     </div>
   </div>
 </div>
-

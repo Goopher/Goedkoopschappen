@@ -17,5 +17,5 @@ public interface IGroceryListProductDAO extends CrudRepository<GroceryListProduc
 
     GroceryListProduct findByProductAndGroceryList(Product product, GroceryList groceryList);
 
-
+    void delete(Long id);
 }
