@@ -41,7 +41,7 @@ public class ProductRestController {
     }
 
     @PostMapping(value="/addToCart")
-    public String addToList( @RequestParam(value="groceryListId") Long id, @RequestBody Product product){
+    public void addToList( @RequestParam(value="groceryListId") Long id, @RequestBody Product product){
         GroceryList groceryList = iGroceryListService.findOne(id);
         if(groceryList == null) {
             iGroceryListService.create(new GroceryList());
