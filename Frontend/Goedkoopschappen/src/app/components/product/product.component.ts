@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { DataService } from '../../services/data.service'
-import { Product } from './product.model'
 import { DecimalPipe } from '@angular/common';
+import { Product } from '../models/product';
 
 @Component({
   selector: 'app-product',

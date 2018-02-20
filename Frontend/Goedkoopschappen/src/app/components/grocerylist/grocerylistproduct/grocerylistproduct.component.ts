@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Product } from '../../product/product.model';
 import { GroceryList } from '../grocerylist.model';
 import { DataService } from '../../../services/data.service';
 import { GroceryListProduct } from './grocerylistproduct.model';
+import { Product } from '../../models/product';
 
 @Component({
   selector: 'app-grocerylistproduct',
@@ -16,7 +16,6 @@ export class GrocerylistproductComponent implements OnInit {
   products:Product[];
   product:Product;
   grocerylist:GroceryList;
-  grocerylists:GroceryList[];
   grocerylistproduct:GroceryListProduct;
   grocerylistproducts:GroceryListProduct[];
   show: boolean = false;

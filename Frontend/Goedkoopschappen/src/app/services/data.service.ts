@@ -20,15 +20,6 @@ export class DataService {
    }
 
 
-<<<<<<< HEAD
-=======
-   addProductToCart(product) {
-     console.log(product);
-     return this.http.post("http://localhost:8080/addToCart", JSON.stringify(product), this.headers)
-     .pipe();
-   }
-
->>>>>>> 9cae6d5056d88c05609166ef205d69e7db13ecfe
    addProductToCart(product) {
      console.log(product);
      return this.http.post("http://localhost:8080/addToCart", JSON.stringify(product), this.headers)
