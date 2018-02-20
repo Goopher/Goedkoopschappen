@@ -1,5 +1,6 @@
 export class GroceryList {
-  groceryListId:number;
-    groceryListName:string;
-    timestamp:Date;
-  }
+  groceryListId: number;
+  groceryListName: string;
+  totalPrice: number;
+  timestamp: Date;
+}

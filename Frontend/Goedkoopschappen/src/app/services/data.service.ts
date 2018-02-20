@@ -27,6 +27,28 @@ export class DataService {
      return this.http.get<GroceryListProduct[]>("http://localhost:8080/api/groceryList", {params: {"listId": listId} })
    }
 
+  createGroceryList(list:GroceryList): Observable<GroceryList> {
+    const body = list;
+    console.log('body = ' + body)
+    let headers = new HttpHeaders();
+    headers = headers.append('Content-Type', 'application/json');
+    return this.http.post<GroceryList>("http://localhost:8080/api/createGroceryList", body);
+  }
+
+  deleteProductFromList(product:GroceryListProduct){
+    let headers = new HttpHeaders();
+    headers = headers.append('Content-type', 'application/json');
+    console.log(product);
+    
+    return this.http.delete("http://localhost:8080/api/deleteGroceryListProduct?id=" + product.groceryListProductId)
+  }
+
+  deleteGroceryList(list:GroceryList) {
+    let headers = new HttpHeaders();
+    headers = headers.append('Content-type', 'application/json');
+    return this.http.delete("http://localhost:8080/api/deleteGroceryList?listId=" + list.groceryListId);
+  }
+
   addProductToCart(product) {
     const body = product;
     let headers = new HttpHeaders();

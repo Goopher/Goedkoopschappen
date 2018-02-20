@@ -1,10 +1,19 @@
-  <div *ngIf="show" style="padding-top:100px;">
-  <table class="table-hover">
-  <tr *ngFor="let grocerylist of grocerylists" (click)="setGroceryList(grocerylist)">
-      <td>{{ grocerylist.groceryListName }} ({{grocerylist.groceryListId}})</td> 
-  </tr>  
-  </table>
-  <div> 
-  <app-grocerylistproduct [grocerylist]="grocerylist"></app-grocerylistproduct>
-</div>
-</div>
+
+<form (ngSubmit)="onSubmit(f)" #f="ngForm">
+  <div class="form-group">
+    <label for="groceryList">Kies een naam voor uw lijst:</label>
+    <input type="text" id="groceryList" name="groceryList" ngModel class="form-control">
+  </div>
+</form>
+
+
+<div>
+  <div *ngFor="let grocerylist of groceryListArray">
+    <div (click)="'grocerylistproductRef.getGroceryListProducts('+grocerylist.groceryListId+')'">
+      <li>{{ grocerylist.groceryListName }} ({{grocerylist.totalPrice}})
+        <button class="btn-xs btn-danger" (click)="deleteGroceryList(grocerylist)">-</button>
+      </li>
+      
+    </div>
+  </div>
+

@@ -24,8 +24,9 @@ import { AuthenticationService } from './services/authentication.service'
 
 
 const appRoutes: Routes = [
-   {path: '', component:SignupComponent },
-   {path: 'products', component:ProductComponent } 
+   {path: 'register', component:SignupComponent },
+   {path: 'products', component:ProductComponent },
+   {path: 'grocerylists', component:GrocerylistComponent }
 ];
 
 @NgModule({

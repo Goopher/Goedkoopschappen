@@ -10,6 +10,8 @@ public interface IGroceryListService {
 
     GroceryList create(GroceryList groceryList);
 
+    void delete(Long id);
+
     List<GroceryList> findAll();
 
     GroceryList findOne(Long id);

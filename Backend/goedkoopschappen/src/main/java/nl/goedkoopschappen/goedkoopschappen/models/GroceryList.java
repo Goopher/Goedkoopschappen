@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 
 import java.sql.Timestamp;
-import java.util.List;
 import java.util.Set;
 
 
@@ -21,6 +20,9 @@ public class GroceryList {
 
     @Column
     private Timestamp timestamp;
+
+    @Column
+    private int totalPrice;
 
     @OneToMany(mappedBy = "groceryList")
     @JsonIgnore
@@ -57,5 +59,13 @@ public class GroceryList {
 
     public void setGroceryListProducts(Set<GroceryListProduct> groceryListProducts) {
         this.groceryListProducts = groceryListProducts;
+    }
+
+    public int getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(int totalPrice) {
+        this.totalPrice = totalPrice;
     }
 }

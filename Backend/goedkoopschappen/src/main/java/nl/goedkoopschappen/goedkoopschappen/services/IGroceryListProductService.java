@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface IGroceryListProductService {
 
-    void create(GroceryListProduct groceryListProduct);
+    GroceryListProduct create(GroceryListProduct groceryListProduct);
 
     List<GroceryListProduct> findAll();
 
@@ -18,6 +18,8 @@ public interface IGroceryListProductService {
     List<GroceryListProduct> findByGroceryList(GroceryList groceryList);
 
     GroceryListProduct findByProductAndGroceryList(Product product, GroceryList groceryList);
+
+    void delete(Long id);
 
 
 
