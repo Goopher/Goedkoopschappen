@@ -21,6 +21,13 @@
     </links>
 </mdb-navbar>
 
-<div class="content col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2" style="padding-top:100px; overflow:hidden">
-    <router-outlet></router-outlet>
+<div class="container-fluid" id="content">
+    <div class="row">
+        <div class="col-lg-8">
+            <router-outlet></router-outlet>
+        </div>
+        <div class="col-lg-4">
+            <app-grocerylist></app-grocerylist>
+        </div>
+    </div>
 </div>
