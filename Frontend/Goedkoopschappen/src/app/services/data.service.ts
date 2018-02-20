@@ -20,23 +20,17 @@ export class DataService {
   }
 
    getGroceryLists(): Observable<GroceryList[]>{
-      return this.http.get<GroceryList[]>("http://localhost:8080/groceryLists");
+      return this.http.get<GroceryList[]>("http://localhost:8080/api/groceryLists");
    }
 
    getGroceryListProducts(listId): Observable<GroceryListProduct[]>{
-     return this.http.get<GroceryListProduct[]>("http://localhost:8080/groceryList", {params: {"listId": listId} })
+     return this.http.get<GroceryListProduct[]>("http://localhost:8080/api/groceryList", {params: {"listId": listId} })
    }
-
-  //  addProductToCart(product) {
-  //    console.log(product);
-  //    return this.http.post("http://localhost:8080/addToCart", JSON.stringify(product))
-  //    .pipe();
-  //  }
 
   addProductToCart(product) {
     const body = product;
     let headers = new HttpHeaders();
     headers = headers.append('Content-type', 'application/json');
-    return this.http.post("http://localhost:8080/api/addToCart", body);
+    return this.http.post("http://localhost:8080/api/addToCart?groceryListId=1", body);
   }
 }

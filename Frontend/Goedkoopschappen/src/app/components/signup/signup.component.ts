@@ -19,7 +19,7 @@ export class SignupComponent implements OnInit {
   onSignup(form: NgForm) {
     const username = form.value.username;
     const password = form.value.password;
-    this.authService.requestToken(username, password, "password")
+    this.authService.signupUser(username, password)
     .subscribe(
     data=> this.registration_status = "Registration succesful",
     error => this.registration_status = "Username already exists");
