@@ -32,16 +32,12 @@ public class ProductService implements IProductService {
     @Override
     public List<Product> findByProductNameContaining(String searchString) {
         List<Product> productList = this.iProductDAO.findByProductNameContainingOrderByPriceAsc(searchString);
-                Iterator<Product> i = productList.iterator();
-        while (i.hasNext()) {
-            Product p = i.next(); // must be called before you can call i.remove()
-            // Do something
-            if (p.getProductName().matches("(.*)?([a-zA-Z0-9À-ÿ])(?i)"+searchString+"(?i)([a-zA-Z0-9À-ÿ])?(.*)?")) {
-                i.remove();
-                //System.out.println(p.getProductName()+" removed");
-            }
 
-        }
+        productList.removeIf(p -> p.getProductName().matches(
+                "(.*)?([a-zA-Z0-9À-ÿ])(?i)" + searchString + "(?i)([a-zA-Z0-9À-ÿ])?(.*)?"
+        ));
+
+        productList.removeIf(p -> p.getPrice()<=0);
 
         return productList;
     }

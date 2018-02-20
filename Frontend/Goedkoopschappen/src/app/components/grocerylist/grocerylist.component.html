@@ -1,0 +1,8 @@
+<div *ngIf="show">
+  <div *ngFor="let grocerylist of grocerylists">
+    <div (click)="'grocerylistproductRef.getGroceryListProducts('+grocerylist.groceryListId+')'">
+    <li>{{ grocerylist.groceryListName }} ({{grocerylist.groceryListId}})</li> 
+    </div>
+  </div>
+</div>
+

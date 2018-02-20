@@ -17,7 +17,11 @@ import { SignupComponent } from './components/signup/signup.component';
 
 
 import { DataService } from './services/data.service';
-import { AuthenticationService } from './services/authentication.service';
+import { GrocerylistComponent } from './components/grocerylist/grocerylist.component';
+import { GrocerylistproductComponent } from './components/grocerylist/grocerylistproduct/grocerylistproduct.component';
+
+import { AuthenticationService } from './services/authentication.service'
+
 
 const appRoutes: Routes = [
    {path: '', component:SignupComponent },
@@ -28,6 +32,8 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     ProductComponent,
+    GrocerylistComponent,
+    GrocerylistproductComponent,
     SigninComponent,
     SignupComponent
   ],

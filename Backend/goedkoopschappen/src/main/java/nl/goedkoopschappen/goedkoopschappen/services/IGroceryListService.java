@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface IGroceryListService {
 
-    void create(GroceryList groceryList);
+    GroceryList create(GroceryList groceryList);
 
     List<GroceryList> findAll();
 

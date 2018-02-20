@@ -19,8 +19,8 @@ public class GroceryListService implements IGroceryListService {
     private IGroceryListDAO iGroceryListDAO;
 
     @Override
-    public void create(GroceryList groceryList) {
-        this.iGroceryListDAO.save(groceryList);
+    public GroceryList create(GroceryList groceryList) {
+       return this.iGroceryListDAO.save(groceryList);
     }
 
     @Override

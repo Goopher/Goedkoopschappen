@@ -13,12 +13,20 @@
                 </a>
             </li>
             <li class="nav-item waves-light" mdbRippleRadius>
-                <a class="nav-link">Winkelwagen</a>
+                <a (click)="grocerylistRef.toggle()" class="nav-link">Winkelwagen</a>
             </li>
 
         </ul>
     </links>
 </mdb-navbar>
+
+<div class="content">
+        <app-grocerylistproduct #grocerylistproductRef [grocerylistproducts]="grocerylistproducts"></app-grocerylistproduct>
+    </div>
+
+<div class="content">
+    <app-grocerylist #grocerylistRef></app-grocerylist>
+</div>
 
 <div class="content" style="padding-top:100px; overflow:hidden">
     <router-outlet></router-outlet>

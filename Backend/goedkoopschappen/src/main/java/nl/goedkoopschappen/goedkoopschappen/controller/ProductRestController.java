@@ -68,13 +68,16 @@ public class ProductRestController {
     @RequestMapping(value = "/groceryList", params = "listId")
     public List<GroceryListProduct> getGroceryList(@RequestParam(value = "listId")Long id){
 
+        List<GroceryListProduct> glp = iGroceryListProductService.findByGroceryList(iGroceryListService.findOne(id));
+
+
         return iGroceryListProductService.findByGroceryList(iGroceryListService.findOne(id));
     }
 
     @RequestMapping(value = "/groceryLists")
-    public List<GroceryListProduct> getGroceryLists(){
+    public List<GroceryList> getGroceryLists(){
 
-        return iGroceryListProductService.findAll();
+        return iGroceryListService.findAll();
     }
 
     @PostMapping(value="/createGroceryList")
@@ -85,9 +88,9 @@ public class ProductRestController {
         groceryList.setGroceryListName(name);
         groceryList.setTimestamp(timestamp);
 
-        iGroceryListService.create(groceryList);
+        GroceryList newGroceryList = iGroceryListService.create(groceryList);
 
-        return "New Grocery List Created";
+        return "New grocery list created with id: " + newGroceryList.getGroceryListId();
     }
 
 

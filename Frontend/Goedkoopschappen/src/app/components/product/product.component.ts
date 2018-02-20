@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { DataService } from '../../services/data.service'
+import { DecimalPipe } from '@angular/common';
 import { Product } from '../models/product';
 import { NgForm } from '@angular/forms/src/directives/ng_form';
 
