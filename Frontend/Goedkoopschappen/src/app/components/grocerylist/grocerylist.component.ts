@@ -5,6 +5,7 @@ import { DataService } from '../../services/data.service';
 import { Product } from '../models/product';
 import { GroceryList } from '../models/grocerylist.model';
 import { NgForm } from '@angular/forms';
+
 import { GroceryListProduct } from '../models/grocerylistproduct.model';
 
 @Component({
@@ -14,8 +15,10 @@ import { GroceryListProduct } from '../models/grocerylistproduct.model';
 })
 export class GrocerylistComponent implements OnInit {
 
+
   grocerylist:GroceryList;
   groceryListArray:GroceryList[];
+
 
   
   constructor(private dataService:DataService) {
@@ -38,6 +41,13 @@ export class GrocerylistComponent implements OnInit {
     if(index > -1){
     this.groceryListArray.splice(index, 1);
     }
+
+  setGroceryList(grocerylist:GroceryList){
+    this.grocerylist = grocerylist;
+    console.log(this.grocerylist);
+  }
+
+
   }
 
   getAllGroceryLists(){    

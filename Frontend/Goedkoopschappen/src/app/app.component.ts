@@ -8,6 +8,8 @@ import { GroceryList } from './components/models/grocerylist.model';
 import { Router } from '@angular/router';
 
 
+import { GroceryList } from './components/models/grocerylist.model';
+
 
 
 

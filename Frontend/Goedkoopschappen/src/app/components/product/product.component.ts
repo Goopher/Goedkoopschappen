@@ -1,8 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
 import { DataService } from '../../services/data.service'
 import { DecimalPipe } from '@angular/common';
 import { Product } from '../models/product';
 import { NgForm } from '@angular/forms/src/directives/ng_form';
+import { EventEmitter } from 'events';
 
 @Component({
   selector: 'app-product',
@@ -12,11 +13,12 @@ import { NgForm } from '@angular/forms/src/directives/ng_form';
 export class ProductComponent implements OnInit {
 
 
-  //@Input() products:Product[]
   products:Product[];
   product = new Product();
   data = this.product[5];
   searchString: String;
+  @Output() updates = new EventEmitter();
+
   
   constructor(private dataService:DataService) { }
 
@@ -42,6 +44,7 @@ export class ProductComponent implements OnInit {
   addProductToCart(product:Product) {
     console.log(product);
     this.dataService.addProductToCart(product).subscribe();
+    this.updates.emit(null);
     
   }
 

@@ -8,3 +8,4 @@ export class GroceryListProduct {
   grocerylist: GroceryList;
   amount: number;
 }
+

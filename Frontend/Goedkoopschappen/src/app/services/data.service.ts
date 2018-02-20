@@ -3,7 +3,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import 'rxjs/add/operator/map';
 import { Product } from '../components/models/product';
 import { Observable } from 'rxjs/Observable';
-
 import { GroceryList } from '../components/models/grocerylist.model';
 import { GroceryListProduct } from '../components/models/grocerylistproduct.model';
 
