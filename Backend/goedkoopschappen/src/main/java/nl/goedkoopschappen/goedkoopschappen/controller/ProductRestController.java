@@ -51,7 +51,7 @@ public class ProductRestController {
             iGroceryListService.create(list);
             groceryList = iGroceryListService.findOne(id);
         }
-
+    
         GroceryListProduct groceryListProduct = iGroceryListProductService.findByProductAndGroceryList(product, groceryList);
         if(groceryListProduct == null){
             groceryListProduct = new GroceryListProduct();

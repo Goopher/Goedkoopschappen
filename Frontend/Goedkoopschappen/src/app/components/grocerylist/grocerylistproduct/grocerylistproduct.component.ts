@@ -4,7 +4,7 @@ import { GroceryList } from '../../models/grocerylist.model';
 import { DataService } from '../../../services/data.service';
 import { GroceryListProduct } from '../../models/grocerylistproduct.model';
 import { Product } from '../../models/product';
-import { DecimalPipe } from '@angular/common';
+import { DecimalPipe, DatePipe } from '@angular/common';
 
 
 @Component({
