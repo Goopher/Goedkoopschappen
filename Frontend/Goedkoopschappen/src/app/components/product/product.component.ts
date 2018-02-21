@@ -4,6 +4,7 @@ import { DecimalPipe } from '@angular/common';
 import { Product } from '../models/product';
 import { NgForm } from '@angular/forms/src/directives/ng_form';
 import { EventEmitter } from 'events';
+import { GroceryListProduct } from '../models/grocerylistproduct.model';
 
 @Component({
   selector: 'app-product',
@@ -15,6 +16,7 @@ export class ProductComponent implements OnInit {
 
   products:Product[];
   product = new Product();
+  groceryListProduct:GroceryListProduct;
   data = [];
   searched = false;
   searchString: String;
@@ -45,9 +47,8 @@ export class ProductComponent implements OnInit {
 
   addProductToCart(product:Product) {
     console.log(product);
-    this.dataService.addProductToCart(product).subscribe();
+    this.dataService.addProductToCart(product).subscribe(data => this.groceryListProduct = data);
     this.updates.emit(null);
-    
   }
 
   loadMoreProducts() {
