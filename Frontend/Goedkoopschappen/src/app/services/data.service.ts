@@ -49,10 +49,11 @@ export class DataService {
     return this.http.delete("http://localhost:8080/api/deleteGroceryList?listId=" + list.groceryListId);
   }
 
-  addProductToCart(product) {
+  addProductToCart(product): Observable<GroceryListProduct> {
     const body = product;
     let headers = new HttpHeaders();
     headers = headers.append('Content-type', 'application/json');
-    return this.http.post("http://localhost:8080/api/addToCart?groceryListId=1", body);
+    return this.http.post<GroceryListProduct>("http://localhost:8080/api/addToCart?groceryListId=1", body)
   }
+
 }

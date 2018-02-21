@@ -41,7 +41,7 @@ public class ProductRestController {
     }
 
     @PostMapping(value="/addToCart")
-    public void addToList( @RequestParam(value="groceryListId") Long id, @RequestBody Product product){
+    public GroceryListProduct addToList( @RequestParam(value="groceryListId") Long id, @RequestBody Product product){
         GroceryList groceryList = iGroceryListService.findOne(id);
         if(groceryList == null) {
             GroceryList list = new GroceryList();
@@ -64,6 +64,7 @@ public class ProductRestController {
             groceryListProduct = iGroceryListProductService.create(groceryListProduct);
         }
         System.out.println("Product added to grocery list, ProductID: " + product.toString() + " , grocery list: " + groceryList.getGroceryListName());
+        return groceryListProduct;
     }
 
     @RequestMapping(value = "/groceryList", params = "listId")

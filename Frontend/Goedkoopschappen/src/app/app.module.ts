@@ -7,12 +7,13 @@ import { MatGridListModule, MatInputModule, MatButtonModule, MatCardModule, MatM
 import { MDBBootstrapModule } from 'angular-bootstrap-md'
 import { Routes, RouterModule } from '@angular/router';
 
-import { InfiniteScrollModule  } from 'ngx-infinite-scroll';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 import { AppComponent } from './app.component';
 import { ProductComponent } from './components/product/product.component';
 import { SigninComponent } from './components/signin/signin.component';
 import { SignupComponent } from './components/signup/signup.component';
+import { HomeComponent } from './components/home/home.component'
 
 
 
@@ -20,13 +21,14 @@ import { DataService } from './services/data.service';
 import { GrocerylistComponent } from './components/grocerylist/grocerylist.component';
 import { GrocerylistproductComponent } from './components/grocerylist/grocerylistproduct/grocerylistproduct.component';
 
-import { AuthenticationService } from './services/authentication.service'
+import { AuthenticationService } from './services/authentication.service';
 
 
 const appRoutes: Routes = [
-   {path: 'register', component:SignupComponent },
-   {path: 'products', component:ProductComponent },
-   {path: 'grocerylists', component:GrocerylistComponent }
+  { path: '', component: HomeComponent },
+  { path: 'register', component: SignupComponent },
+  { path: 'products', component: ProductComponent },
+  { path: 'grocerylists', component: GrocerylistComponent }
 ];
 
 @NgModule({
@@ -36,7 +38,8 @@ const appRoutes: Routes = [
     GrocerylistComponent,
     GrocerylistproductComponent,
     SigninComponent,
-    SignupComponent
+    SignupComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

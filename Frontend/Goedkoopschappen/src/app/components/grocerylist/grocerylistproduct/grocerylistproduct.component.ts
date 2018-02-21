@@ -15,29 +15,29 @@ import { DecimalPipe } from '@angular/common';
 export class GrocerylistproductComponent implements OnInit, OnChanges {
 
 
-  @Input() grocerylist:GroceryList;
+  @Input() groceryListProduct:GroceryListProduct;
   grocerylistproducts:GroceryListProduct[];
+
 
   constructor(private dataService:DataService) {
     
    }
 
   ngOnInit() {
+    this.getGroceryListProducts();
   }
 
   ngOnChanges(){
     console.log("Change detected in GLP")
-    if(this.grocerylist!=null){
-    console.log(this.grocerylist)
-    this.getGroceryListProducts(this.grocerylist);
-    console.log(this.grocerylistproducts)
+    if(this.groceryListProduct!=null){
+    console.log(this.groceryListProduct)
+    this.getGroceryListProducts();
     }
   }
 
-  getGroceryListProducts(grocerylist){
-
-    console.log("GLP being gotten")
-    this.dataService.getGroceryListProducts(grocerylist.groceryListId).subscribe((grocerylistproducts) => {
+  getGroceryListProducts(){
+    console.log("Retrieving grocerylistproduct...")
+    this.dataService.getGroceryListProducts(1).subscribe((grocerylistproducts) => {
       this.grocerylistproducts = grocerylistproducts;
     });
   
