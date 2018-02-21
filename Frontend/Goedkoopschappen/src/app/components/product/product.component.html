@@ -1,5 +1,5 @@
 <div class="container" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="loadMoreProducts()">
-  <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+  <form class="col-lg-5 offset-lg-1" (ngSubmit)="onSubmit(f)" #f="ngForm">
     <div class="form-group">
       <label for="product">Search</label>
       <input type="text" id="product" name="product" ngModel class="form-control">

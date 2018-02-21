@@ -1,0 +1,22 @@
+th {
+    border-bottom: 1px solid #ddd;
+    font-size: 1.5em;
+}
+td {
+    border-bottom: 1px solid #ddd;
+    font-size: 1.2em;
+}
+
+tr:nth-child(odd){
+    background-color: #e3f2fd;
+}
+
+.righty{
+    padding-right: 20px;
+    text-align: center; 
+
+}
+
+.lefty{
+    padding-left: 20px;
+}
