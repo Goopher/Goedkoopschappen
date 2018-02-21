@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatGridListModule, MatInputModule, MatButtonModule, MatCardModule, MatMenuModule, MatToolbarModule, MatIconModule, MatSidenavModule, MatCheckboxModule } from '@angular/material';
 import { MDBBootstrapModule } from 'angular-bootstrap-md'
 import { Routes, RouterModule } from '@angular/router';
+import { SlideshowModule } from 'ng-simple-slideshow';
 
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
@@ -58,6 +59,7 @@ const appRoutes: Routes = [
     MatGridListModule,
     InfiniteScrollModule,
     MDBBootstrapModule.forRoot(),
+    SlideshowModule
   ],
   providers: [DataService, AuthenticationService],
   bootstrap: [AppComponent]
