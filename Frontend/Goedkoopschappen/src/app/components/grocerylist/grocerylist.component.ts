@@ -7,6 +7,7 @@ import { GroceryList } from '../models/grocerylist.model';
 import { NgForm } from '@angular/forms';
 
 import { GroceryListProduct } from '../models/grocerylistproduct.model';
+import { GroceryListService } from '../../services/grocerylistsService.service';
 
 @Component({
   selector: 'app-grocerylist',
@@ -21,7 +22,7 @@ export class GrocerylistComponent implements OnInit {
 
 
 
-  constructor(private dataService: DataService) {
+  constructor(private dataService: DataService, private groceryListService: GroceryListService) {
     this.getAllGroceryLists();
   }
 
@@ -33,9 +34,12 @@ export class GrocerylistComponent implements OnInit {
     if(form.value.groceryList != null && form.value.groceryList != ''){
     newList.groceryListName = form.value.groceryList;
     console.log(newList);
-    this.dataService.createGroceryList(newList).subscribe((data => this.groceryListArray.push(data)), error => console.log(error));
+    this.dataService.createGroceryList(newList).subscribe(
+      (data => this.groceryListArray.push(data)),
+       error => console.log(error));
     form.reset();
     }
+    this.groceryListService.setGroceryLists(this.groceryListArray);
   }
 
   deleteGroceryList(grocerylist: GroceryList) {
@@ -44,6 +48,7 @@ export class GrocerylistComponent implements OnInit {
     if (index > -1) {
       this.groceryListArray.splice(index, 1);
     }
+    this.groceryListService.setGroceryLists(this.groceryListArray);
   }
 
   setGroceryList(grocerylist: GroceryList) {

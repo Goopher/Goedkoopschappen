@@ -5,13 +5,16 @@ import { Product } from '../components/models/product';
 import { Observable } from 'rxjs/Observable';
 import { GroceryList } from '../components/models/grocerylist.model';
 import { GroceryListProduct } from '../components/models/grocerylistproduct.model';
+import { GroceryListService } from './grocerylistsService.service';
 
 @Injectable()
 export class DataService {
-  constructor(private http: HttpClient) {
+  
+  constructor(private http: HttpClient, private grocerylistsService:GroceryListService) {
     console.log('Data service connected...');
 
   }
+  activeGroceryList : GroceryList;
 
   getProducts(searchString): Observable<Product[]> {
     let headers = new HttpHeaders();
@@ -52,8 +55,9 @@ export class DataService {
   addProductToCart(product): Observable<GroceryListProduct> {
     const body = product;
     let headers = new HttpHeaders();
+    this.activeGroceryList = this.grocerylistsService.getActiveGroceryList();    
     headers = headers.append('Content-type', 'application/json');
-    return this.http.post<GroceryListProduct>("http://localhost:8080/api/addToCart?groceryListId=1", body)
+    return this.http.post<GroceryListProduct>("http://localhost:8080/api/addToCart?groceryListId="+this.activeGroceryList.groceryListId, body)
   }
 
 }
