@@ -119,7 +119,7 @@ public class ProductRestController {
     }
 
     @DeleteMapping(value = "/deleteGroceryListProduct")
-    public void deleteGroceryListProduct(@RequestParam Long id) {
+    public GroceryList deleteGroceryListProduct(@RequestParam Long id) {
         GroceryListProduct product = iGroceryListProductService.findOne(id);
         GroceryList list = iGroceryListService.findOne(product.getGroceryList().getGroceryListId());
         System.out.println("Deleted item with id: " + id);
@@ -129,7 +129,7 @@ public class ProductRestController {
         } else {
             iGroceryListProductService.delete(product.getGroceryListProductId());
         }
-        iGroceryListService.create(list);
+        return iGroceryListService.create(list);
     }
 
 }
