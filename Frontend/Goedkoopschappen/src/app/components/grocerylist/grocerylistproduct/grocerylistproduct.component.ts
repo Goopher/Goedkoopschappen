@@ -68,8 +68,15 @@ export class GrocerylistproductComponent implements OnInit, OnChanges {
   }
 
   deleteProductFromList(groceryListProduct:GroceryListProduct) {
-    this.dataService.deleteProductFromList(groceryListProduct).subscribe(data=>"Success!", error=> console.log(error));
-
+    this.dataService.deleteProductFromList(groceryListProduct).subscribe(data=>
+      
+      {
+        this.activeGroceryList = data;
+        
+        this.getGroceryListProducts(); 
+      }
+        , error=> console.log(error));
+    
   }
 
 }
