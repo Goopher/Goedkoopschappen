@@ -17,7 +17,7 @@ export class GroceryListService {
 
   getGroceryLists() : GroceryList[] {
     console.log("Service getting grocerylists")
-    return this.grocerylists.slice();
+    return this.grocerylists;
   }
 
   setGroceryLists(grocerylists:GroceryList[]){

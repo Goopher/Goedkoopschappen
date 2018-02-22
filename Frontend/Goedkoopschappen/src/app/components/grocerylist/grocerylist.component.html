@@ -1,20 +1,29 @@
-<form class="col-lg-3 offset-lg-1" (ngSubmit)="onSubmit(f)" #f="ngForm">
-  <div class="form-group">
-    <label for="groceryList"><strong>Maak hier een nieuwe lijst aan:</strong></label>
-    <input type="text" id="groceryList" name="groceryList" ngModel class="form-control">
-    <button type="submit" class="btn btn-success">Toevoegen</button>
+<div class="top-div">
+  <form class="col-lg-3 offset-lg-1" (ngSubmit)="onSubmit(f)" #f="ngForm">
+    <div class="form-group">
+      <label for="groceryList">
+        <strong>Maak hier een nieuwe lijst aan:</strong>
+      </label>
+      <input type="text" id="groceryList" name="groceryList" ngModel class="form-control">
+      <button type="submit" class="btn btn-success">Toevoegen</button>
+    </div>
+  </form>
+  <div class="container-fluid" style="padding-left:100px; padding-right:100px;">
+    <div class="table-responsive">
+      <table class="table table-hover" style="float: none; margin: 0 auto;">
+        <th class="lefty">Naam</th>
+        <th>Gemaakt op:</th>
+        <th>Totaal prijs</th>
+        <th class="righty"></th>
+        <tr *ngFor="let grocerylist of groceryListArray">
+          <td class="lefty">{{ grocerylist.groceryListName }}</td>
+          <td>{{grocerylist.timestamp | date:'dd-MM-yyyy'}} om {{grocerylist.timestamp | date:'HH:mm:ss'}}</td>
+          <td>€{{grocerylist.totalPrice}}</td>
+          <td class="righty">
+            <button mat-button (click)="deleteGroceryList(grocerylist)"><mat-icon>delete</mat-icon></button>
+          </td>
+        </tr>
+      </table>
+    </div>
   </div>
-</form>
-<div class="container-fluid" style="padding-left:100px; padding-right:100px;">
-<div class="table-responsive">
-<table class="table table-hover" style="float: none; margin: 0 auto;">
-  <th class="lefty">Naam</th><th>Gemaakt op:</th><th>Totaal prijs</th><th class="righty"></th>
-  <tr *ngFor="let grocerylist of groceryListArray">
-      <td class="lefty">{{ grocerylist.groceryListName }}</td>
-      <td>{{grocerylist.timestamp | date:'dd-MM-yyyy'}} om {{grocerylist.timestamp | date:'HH:mm:ss'}}</td>
-      <td>€{{grocerylist.totalPrice}}</td>
-      <td class="righty"><button class="btn btn-danger" (click)="deleteGroceryList(grocerylist)">Verwijder</button></td >      
-   </tr>
-</table>
-</div>
 </div>

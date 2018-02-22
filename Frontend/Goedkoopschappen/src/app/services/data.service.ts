@@ -25,6 +25,10 @@ export class DataService {
    getGroceryLists(): Observable<GroceryList[]>{
       return this.http.get<GroceryList[]>("http://localhost:8080/api/groceryLists");
    }
+   
+   getGroceryList(list : GroceryList): Observable<GroceryList>{
+    return this.http.get<GroceryList>("http://localhost:8080/api/groceryListById?listId=" + list.groceryListId);
+ }
 
    getGroceryListProducts(listId): Observable<GroceryListProduct[]>{
      return this.http.get<GroceryListProduct[]>("http://localhost:8080/api/groceryList", {params: {"listId": listId} })
