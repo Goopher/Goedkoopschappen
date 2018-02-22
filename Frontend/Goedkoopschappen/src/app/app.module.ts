@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http'
 import { FormsModule } from '@angular/forms'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatGridListModule, MatInputModule, MatButtonModule, MatCardModule, MatMenuModule, MatToolbarModule, MatIconModule, MatSidenavModule, MatCheckboxModule } from '@angular/material';
+import { MatGridListModule, MatInputModule, MatButtonModule, MatCardModule, MatMenuModule, MatToolbarModule, MatIconModule } from '@angular/material';
 import { MDBBootstrapModule } from 'angular-bootstrap-md'
 import { Routes, RouterModule } from '@angular/router';
 import { SlideshowModule } from 'ng-simple-slideshow';
@@ -52,10 +52,8 @@ const appRoutes: Routes = [
     MatMenuModule,
     MatCardModule,
     MatToolbarModule,
-    MatIconModule,
-    MatSidenavModule,
-    MatCheckboxModule,
     MatInputModule,
+    MatIconModule,
     MatGridListModule,
     InfiniteScrollModule,
     MDBBootstrapModule.forRoot(),
