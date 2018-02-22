@@ -46,3 +46,41 @@
 .dropdown:hover .dropbtn {
     background-color: #3e8e41;
 }
+
+th {
+    border-bottom: 1px solid #ddd;
+    font-size: 1.5em;
+}
+td {
+    border-bottom: 1px solid #ddd;
+    font-size: 1.2em;
+    vertical-align: middle;
+}
+
+tr:nth-child(odd){
+    background-color: #e3f2fd;
+}
+
+.borderless td, .borderless th {
+    border: none;
+}
+
+.footer-row{
+    background-color: #1976D2 !important;
+    color: white;
+}
+
+.righty{
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    font-weight: bold;
+    font-size:1.5em;
+
+}
+
+.lefty{
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    font-weight: bold;
+    font-size:1.5em;
+}

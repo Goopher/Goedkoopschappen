@@ -12,13 +12,13 @@
     <div class="table-responsive">
       <table class="table table-hover" style="float: none; margin: 0 auto;">
         <th class="lefty">Naam</th>
-        <th>Gemaakt op:</th>
-        <th>Totaal prijs</th>
+        <th>Gemaakt op</th>
+        <th>Totaalbedrag</th>
         <th class="righty"></th>
         <tr *ngFor="let grocerylist of groceryListArray">
           <td class="lefty">{{ grocerylist.groceryListName }}</td>
           <td>{{grocerylist.timestamp | date:'dd-MM-yyyy'}} om {{grocerylist.timestamp | date:'HH:mm:ss'}}</td>
-          <td>€{{grocerylist.totalPrice}}</td>
+          <td>€{{grocerylist.totalPrice / 100 | number: '1.2'}}</td>
           <td class="righty">
             <button mat-button (click)="deleteGroceryList(grocerylist)"><mat-icon>delete</mat-icon></button>
           </td>
