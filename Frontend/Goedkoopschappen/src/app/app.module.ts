@@ -22,6 +22,7 @@ import { GrocerylistComponent } from './components/grocerylist/grocerylist.compo
 import { GrocerylistproductComponent } from './components/grocerylist/grocerylistproduct/grocerylistproduct.component';
 
 import { AuthenticationService } from './services/authentication.service';
+import { GroceryListService } from './services/grocerylistsService.service';
 
 
 const appRoutes: Routes = [
@@ -59,7 +60,7 @@ const appRoutes: Routes = [
     InfiniteScrollModule,
     MDBBootstrapModule.forRoot(),
   ],
-  providers: [DataService, AuthenticationService],
+  providers: [DataService, AuthenticationService, GroceryListService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

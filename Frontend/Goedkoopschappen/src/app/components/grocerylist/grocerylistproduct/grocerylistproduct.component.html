@@ -1,10 +1,23 @@
-<div style="padding-top: 30px">
-<table class="table-responsive">
-  <th>Product</th> <th>Prijs</th><th>Aantal</th>
+<div>
+<div style="padding-top: 30px; width: 100%;">
+    <div class="dropdown">
+        <button class="dropbtn">Boodschappenlijst</button>
+        <div class="dropdown-content">
+          <div *ngFor="let grocerylist of grocerylists">
+            <a (click)="setActiveGroceryList(grocerylist)">{{grocerylist.groceryListName}}</a>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="activeGroceryList!=null"><h4>{{activeGroceryList.groceryListName}}</h4></div>
+      <div *ngIf="activeGroceryList!=null">
+  <table class="table">
+  <th>Product</th><th>Aantal</th> <th>Prijs</th>
   <tr *ngFor="let grocerylistproduct of grocerylistproducts">
     <td style="padding-right:50px">{{ grocerylistproduct.product.productName }}</td>
-    <td style="padding-right:50px">€{{grocerylistproduct.product.price / 100 | number: '1.2'}}</td>
     <td style="padding-right:50px">{{grocerylistproduct.amount}}</td>
+    <td style="padding-right:50px">€{{grocerylistproduct.product.price * grocerylistproduct.amount / 100 | number: '1.2'}}</td>
   </tr>      
 </table>
+</div>
+</div>
 </div>
