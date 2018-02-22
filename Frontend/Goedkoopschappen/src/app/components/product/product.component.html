@@ -11,11 +11,8 @@
         <div *ngIf="data.length === 0 && searched">
           <h1>Je zoekopdracht '{{searchString}}' heeft niets opgeleverd.</h1>
         </div>
-        <div *ngFor="let product of data" class="col-lg-3 col-4 d-flex" style="padding-bottom: 50px;">
-          <!--Card-->
-
+        <div *ngFor="let product of data" class="col-lg-3 col-4 d-flex" style="padding-bottom: 50px;">         
           <div class="card">
-            <!--Card image-->
             <div class="card-img-top" mdbRippleRadius>
               <a href={{product.productUrl}} target="blank">
                 <img src={{product.imageUrl}} class="img-fluid" alt="">
@@ -24,9 +21,7 @@
                 <div class="mask"></div>
               </a>
             </div>
-            <!--Card image-->
 
-            <!--Card content-->
             <div class="card-body">
               <h5 class="card-title">
                 <strong>{{ product.productName }}</strong>
@@ -35,18 +30,21 @@
                 € {{product.price / 100 | number: '1.2'}}
               </h6>
             </div>
-            <!--Card content-->
             <div>
               <button class="add-to-cart-button float-right" (click)="addProductToCart(product)" mat-fab>
                 <mat-icon>add_shopping_cart</mat-icon>
               </button>
             </div>
           </div>
-          <!--Card-->
 
         </div>
-      </div>
-    </div>
+      </div> 
+    </div> 
+
+    
+
+
+
     <div class="col-lg-4" >
       <div class="right col-lg-4" style="height:80%;">
         <app-grocerylistproduct [groceryListProduct]="groceryListProduct"></app-grocerylistproduct>

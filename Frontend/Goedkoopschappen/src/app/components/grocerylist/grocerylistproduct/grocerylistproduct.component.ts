@@ -61,6 +61,10 @@ export class GrocerylistproductComponent implements OnInit, OnChanges {
     this.grocerylistsService.setActiveGroceryList(grocerylist);
     this.getGroceryListProducts();
     console.log("Grocery list activated in glp component: " + grocerylist.groceryListName);
+  }
+
+  deleteProductFromList(groceryListProduct:GroceryListProduct) {
+    this.dataService.deleteProductFromList(groceryListProduct).subscribe(data=>"Success!", error=> console.log(error));
 
   }
 

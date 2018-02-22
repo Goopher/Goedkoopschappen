@@ -31,36 +31,38 @@ export class GrocerylistComponent implements OnInit {
 
   onSubmit(form: NgForm) {
     let newList = new GroceryList();
-    if(form.value.groceryList != null && form.value.groceryList != ''){
-    newList.groceryListName = form.value.groceryList;
-    console.log(newList);
-    this.dataService.createGroceryList(newList).subscribe(
-      (data => this.groceryListArray.push(data)),
-       error => console.log(error));
-    form.reset();
+    if (form.value.groceryList != null && form.value.groceryList != '') {
+      newList.groceryListName = form.value.groceryList;
+      console.log(newList);
+      this.dataService.createGroceryList(newList).subscribe(
+        (data => this.groceryListArray.push(data)),
+        error => console.log(error));
+      form.reset();
     }
     this.groceryListService.setGroceryLists(this.groceryListArray);
   }
 
   deleteGroceryList(grocerylist: GroceryList) {
-    this.dataService.deleteGroceryList(grocerylist).subscribe();
-    let index = this.groceryListArray.indexOf(grocerylist);
-    if (index > -1) {
-      this.groceryListArray.splice(index, 1);
+    if (confirm("Weet u zeker dat u de lijst met naam " + grocerylist.groceryListName + " wilt verwijderen?")) {
+      this.dataService.deleteGroceryList(grocerylist).subscribe();
+      let index = this.groceryListArray.indexOf(grocerylist);
+      if (index > -1) {
+        this.groceryListArray.splice(index, 1);
+      }
+      this.groceryListService.setGroceryLists(this.groceryListArray);
     }
-    this.groceryListService.setGroceryLists(this.groceryListArray);
   }
 
   setGroceryList(grocerylist: GroceryList) {
     this.grocerylist = grocerylist;
-    console.log("Set Grocery List: "  + this.grocerylist);
+    console.log("Set Grocery List: " + this.grocerylist);
   }
 
   getAllGroceryLists() {
     console.log("Getting grocerylists...")
     this.dataService.getGroceryLists().subscribe((grocerylists) => {
       this.groceryListArray = grocerylists;
-      console.log("Array: "  + this.groceryListArray);
+      console.log("Array: " + this.groceryListArray);
     });
   }
 

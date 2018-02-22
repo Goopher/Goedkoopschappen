@@ -1,4 +1,4 @@
-<div>
+<div class="top-div">
 <div style="padding-top: 30px; width: 100%;">
     <div class="dropdown">
         <button class="dropbtn">Boodschappenlijst</button>
@@ -16,6 +16,7 @@
     <td style="padding-right:50px">{{ grocerylistproduct.product.productName }}</td>
     <td style="padding-right:50px">{{grocerylistproduct.amount}}</td>
     <td style="padding-right:50px">€{{grocerylistproduct.product.price * grocerylistproduct.amount / 100 | number: '1.2'}}</td>
+    <td><button mat-button (click)="deleteProductFromList(grocerylistproduct)"><mat-icon>delete</mat-icon></button></td>
   </tr>      
 </table>
 </div>

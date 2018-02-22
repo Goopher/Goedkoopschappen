@@ -1,16 +1,18 @@
+<div class="container-fluid">
 <form (ngSubmit)="onSignup(f)" #f="ngForm">
   <div class="form-group">
-    <label for="username">Username</label>
-    <input type="email" id="username" name="username" ngModel class="form-control">
+    <label for="username">Gebruikersnaam</label>
+    <input type="text" id="username" name="username" ngModel class="form-control">
   </div>
   <div class="form-group">
-      <label for="password">Password</label>
+      <label for="password">Wachtwoord</label>
       <input type="password" id="password" name="password" ngModel class="form-control">
   </div>
   <div>
-  <button class="btn btn-primary" type="submit">Sign up</button>
+  <button class="btn btn-primary" type="submit">Registreren</button>
   <div>
     </div>
   <h4>{{registration_status}}</h4>
   </div>
 </form>
+</div>

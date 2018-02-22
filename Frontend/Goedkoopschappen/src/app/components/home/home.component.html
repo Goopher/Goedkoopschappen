@@ -1,8 +1,23 @@
-<div class="" id="top-div">
-    <div class="slideshow-div" style="height: 100%">
-        <slideshow #slideshow [imageUrls]="imageUrlArray" [height]="100" [showArrows]="false" [autoPlay]="true"></slideshow>
-        <div class="container-fluid home-content">
-            <h1>Hallo Jumbo!</h1>
+<div id="top-div">
+    <div class="slideshow-div">
+        <slideshow #slideshow [autoPlayInterval]="6000" [imageUrls]="imageUrlArray" [height]="100" [showArrows]="false" [autoPlay]="true"></slideshow>
+    </div>
+    <div class="row home-content">
+        <div class="information col-xl-4 col-md-12">
+            <div>
+                <h1>Welkom op de GoedkoopschApp!</h1>
+                <ul>
+                    <li>Nooit meer teveel betalen voor uw boodschappen</li>
+                    <li>Vriendelijke gebruikservaring</li>
+                    <li>Zelfs uw collega's zijn te vinden op onze website</li>
+                </ul>`
+
+                <p>Het aantal gebruikers van onze GoedkoopschApp loopt snel op, zorg snel dat u erbij bent en bespaar tot wel
+                    30% op uw boodschappen (zolang u maar bij de Jumbo of de Hoogvliet uw boodschappen doet).</p>
+            </div>
+        </div>
+        <div class="sign-up col-xl-2 col-md-12">
+            <app-signup></app-signup>
         </div>
     </div>
 </div>
