@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class GroceryListProductService implements IGroceryListProductService {
+public class    GroceryListProductService implements IGroceryListProductService {
 
     @Autowired
     private IGroceryListProductDAO iGroceryListProductDAO;

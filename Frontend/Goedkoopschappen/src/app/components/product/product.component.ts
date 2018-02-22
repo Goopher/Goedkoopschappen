@@ -5,6 +5,7 @@ import { Product } from '../models/product';
 import { NgForm } from '@angular/forms/src/directives/ng_form';
 import { EventEmitter } from 'events';
 import { GroceryListProduct } from '../models/grocerylistproduct.model';
+import { GroceryListService } from '../../services/grocerylistsService.service';
 
 @Component({
   selector: 'app-product',
@@ -23,10 +24,10 @@ export class ProductComponent implements OnInit {
   @Output() updates = new EventEmitter();
 
   
-  constructor(private dataService:DataService) { }
+  constructor(private dataService:DataService, private groceryListService:GroceryListService) { }
 
   ngOnInit() {
-
+    
   }
 
   onSubmit(form: NgForm) {
@@ -39,16 +40,20 @@ export class ProductComponent implements OnInit {
       this.dataService.getProducts(searchString).subscribe((products) => {
         this.products = products;
         this.searchString=searchString;
+        if(this.products.length > 15) {
         this.data = this.products.slice(0,15);
         this.searched = true;
         console.log(this.data.length)
+      }
       });
   }
 
   addProductToCart(product:Product) {
     console.log(product);
     this.dataService.addProductToCart(product).subscribe(data => this.groceryListProduct = data);
-    this.updates.emit(null);
+    let groceryList = this.groceryListService.getActiveGroceryList();
+    groceryList.totalPrice - product.price;
+    this.groceryListService.setActiveGroceryList(groceryList);
   }
 
   loadMoreProducts() {

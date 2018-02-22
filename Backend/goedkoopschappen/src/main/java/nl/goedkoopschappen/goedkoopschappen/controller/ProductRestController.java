@@ -63,18 +63,29 @@ public class ProductRestController {
             groceryListProduct.setAmount(groceryListProduct.getAmount() + 1);
             groceryListProduct = iGroceryListProductService.create(groceryListProduct);
         }
+        iGroceryListService.create(groceryList);
         System.out.println("Product added to grocery list, ProductID: " + product.toString() + " , grocery list: " + groceryList.getGroceryListName());
         return groceryListProduct;
     }
 
     @RequestMapping(value = "/groceryList", params = "listId")
-    public List<GroceryListProduct> getGroceryList(@RequestParam(value = "listId") Long id) {
+    public List<GroceryListProduct> getGroceryProductList(@RequestParam(value = "listId") Long id) {
 
         List<GroceryListProduct> glp = iGroceryListProductService.findByGroceryList(iGroceryListService.findOne(id));
 
 
         return iGroceryListProductService.findByGroceryList(iGroceryListService.findOne(id));
     }
+
+    @RequestMapping(value = "/groceryListById", params = "listId")
+    public GroceryList getGroceryList(@RequestParam(value = "listId") Long id) {
+
+        List<GroceryListProduct> glp = iGroceryListProductService.findByGroceryList(iGroceryListService.findOne(id));
+
+
+        return iGroceryListService.findOne(id);
+    }
+
 
     @RequestMapping(value = "/groceryLists")
     public List<GroceryList> getGroceryLists() {
@@ -110,6 +121,7 @@ public class ProductRestController {
     @DeleteMapping(value = "/deleteGroceryListProduct")
     public void deleteGroceryListProduct(@RequestParam Long id) {
         GroceryListProduct product = iGroceryListProductService.findOne(id);
+        GroceryList list = iGroceryListService.findOne(product.getGroceryList().getGroceryListId());
         System.out.println("Deleted item with id: " + id);
         if (product.getAmount() > 1) {
             product.setAmount(product.getAmount() - 1);
@@ -117,6 +129,7 @@ public class ProductRestController {
         } else {
             iGroceryListProductService.delete(product.getGroceryListProductId());
         }
+        iGroceryListService.create(list);
     }
 
 }

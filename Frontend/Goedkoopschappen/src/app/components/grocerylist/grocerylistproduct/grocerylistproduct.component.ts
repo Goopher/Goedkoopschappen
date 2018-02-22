@@ -34,8 +34,6 @@ export class GrocerylistproductComponent implements OnInit, OnChanges {
       this.grocerylists = grocerylists;
       console.log("Array: "  + this.grocerylists);
     });
-    this.grocerylists = this.grocerylistsService.getGroceryLists();
-    this.grocerylistsService.setGroceryLists(this.grocerylists);
   }
 
   ngOnChanges(){
@@ -43,9 +41,14 @@ export class GrocerylistproductComponent implements OnInit, OnChanges {
     if(this.groceryListProduct!=null){
       console.log(this.groceryListProduct)
       this.getGroceryListProducts();
-      }
-    this.grocerylists = this.grocerylistsService.getGroceryLists();
-  
+      console.log(this.grocerylists);
+      this.dataService.getGroceryList(this.activeGroceryList).subscribe(data => 
+        {
+          this.activeGroceryList = data;
+          console.log(this.activeGroceryList);
+        }
+      );
+    }  
   }
 
   getGroceryListProducts(){
@@ -58,6 +61,7 @@ export class GrocerylistproductComponent implements OnInit, OnChanges {
 
   setActiveGroceryList(grocerylist: GroceryList){
     this.activeGroceryList = grocerylist;
+    console.log(this.activeGroceryList.totalPrice);
     this.grocerylistsService.setActiveGroceryList(grocerylist);
     this.getGroceryListProducts();
     console.log("Grocery list activated in glp component: " + grocerylist.groceryListName);
