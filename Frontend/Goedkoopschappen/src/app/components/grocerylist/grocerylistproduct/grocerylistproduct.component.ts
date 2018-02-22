@@ -22,6 +22,7 @@ export class GrocerylistproductComponent implements OnInit, OnChanges {
   grocerylists: GroceryList[];
   activeGroceryList: GroceryList;
   initialGrocerylists: GroceryList[];
+  total:number;
 
 
   constructor(private dataService:DataService, private grocerylistsService: GroceryListService) {
@@ -30,11 +31,11 @@ export class GrocerylistproductComponent implements OnInit, OnChanges {
    }
 
   ngOnInit() {
+    console.log("GLP AM INITIATED!")
     this.dataService.getGroceryLists().subscribe((grocerylists) => {
       this.grocerylists = grocerylists;
       console.log("Array: "  + this.grocerylists);
     });
-    this.grocerylists = this.grocerylistsService.getGroceryLists();
     this.grocerylistsService.setGroceryLists(this.grocerylists);
   }
 
@@ -42,25 +43,44 @@ export class GrocerylistproductComponent implements OnInit, OnChanges {
     console.log("Change detected in GLP")
     if(this.groceryListProduct!=null){
       console.log(this.groceryListProduct)
-      this.getGroceryListProducts();
+      this.setGroceryListProducts();
+       console.log("GLP IS CHANGED!")
+    
+    
+       this.dataService.getGroceryLists().subscribe((grocerylists) => {
+      this.grocerylists = grocerylists;
+      console.log("CHECK CHECK CHECK");
+    });
+    this.setActiveGroceryList(this.activeGroceryList);
+    this.setGroceryListProducts();
+      this.total = this.activeGroceryList.totalPrice;
+      
       }
-    this.grocerylists = this.grocerylistsService.getGroceryLists();
-  
+
+     
+    
+    // this.dataService.getGroceryListProducts(this.activeGroceryList).subscribe((grocerylistproducts) => {
+    //   this.grocerylistproducts = grocerylistproducts;
+    //   console.log("DOES IT WORK?");});
+   
+
+    
   }
 
-  getGroceryListProducts(){
+  setGroceryListProducts(){
     console.log("Retrieving grocerylistproduct...")
     this.dataService.getGroceryListProducts(this.activeGroceryList.groceryListId).subscribe((grocerylistproducts) => {
       this.grocerylistproducts = grocerylistproducts;
     });
+    this.total = this.activeGroceryList.totalPrice;
   
   }
 
   setActiveGroceryList(grocerylist: GroceryList){
     this.activeGroceryList = grocerylist;
-    this.grocerylistsService.setActiveGroceryList(grocerylist);
-    this.getGroceryListProducts();
-    console.log("Grocery list activated in glp component: " + grocerylist.groceryListName);
+    this.grocerylistsService.setActiveGroceryList(this.activeGroceryList);
+    this.setGroceryListProducts();
+    console.log("Grocery list activated in glp component: " + this.activeGroceryList.groceryListName);
 
   }
 

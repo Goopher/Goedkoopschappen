@@ -1,3 +1,4 @@
+<div style="padding-top: 50px;">
 <form class="col-lg-3 offset-lg-1" (ngSubmit)="onSubmit(f)" #f="ngForm">
   <div class="form-group">
     <label for="groceryList"><strong>Maak hier een nieuwe lijst aan:</strong></label>
@@ -12,9 +13,10 @@
   <tr *ngFor="let grocerylist of groceryListArray">
       <td class="lefty">{{ grocerylist.groceryListName }}</td>
       <td>{{grocerylist.timestamp | date:'dd-MM-yyyy'}} om {{grocerylist.timestamp | date:'HH:mm:ss'}}</td>
-      <td>€{{grocerylist.totalPrice}}</td>
+      <td>€{{grocerylist.totalPrice / 100  | number: '1.2'}}</td>
       <td class="righty"><button class="btn btn-danger" (click)="deleteGroceryList(grocerylist)">Verwijder</button></td >      
    </tr>
 </table>
+</div>
 </div>
 </div>

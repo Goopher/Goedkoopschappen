@@ -19,14 +19,17 @@ export class DataService {
   getProducts(searchString): Observable<Product[]> {
     let headers = new HttpHeaders();
     headers = headers.append('Content-type', 'application/json');
+    console.log("GET PRODUCTS");
     return this.http.get<Product[]>('http://localhost:8080/api/products', { params: { "productName": searchString } });
   }
 
    getGroceryLists(): Observable<GroceryList[]>{
+    console.log("GET GROCERY LISTS");
       return this.http.get<GroceryList[]>("http://localhost:8080/api/groceryLists");
    }
 
    getGroceryListProducts(listId): Observable<GroceryListProduct[]>{
+    console.log("GET GROCERY LIST PRODUCTS");
      return this.http.get<GroceryListProduct[]>("http://localhost:8080/api/groceryList", {params: {"listId": listId} })
    }
 
@@ -35,6 +38,7 @@ export class DataService {
     console.log('body = ' + body)
     let headers = new HttpHeaders();
     headers = headers.append('Content-Type', 'application/json');
+    console.log("CREATE GROCERY LIST");
     return this.http.post<GroceryList>("http://localhost:8080/api/createGroceryList", body);
   }
 
@@ -42,6 +46,7 @@ export class DataService {
     let headers = new HttpHeaders();
     headers = headers.append('Content-type', 'application/json');
     console.log(product);
+    console.log("DELETE PRODUCT FROM LIST");
     
     return this.http.delete("http://localhost:8080/api/deleteGroceryListProduct?id=" + product.groceryListProductId)
   }
@@ -49,6 +54,7 @@ export class DataService {
   deleteGroceryList(list:GroceryList) {
     let headers = new HttpHeaders();
     headers = headers.append('Content-type', 'application/json');
+    console.log("DELETE GROCERY LIST");
     return this.http.delete("http://localhost:8080/api/deleteGroceryList?listId=" + list.groceryListId);
   }
 
@@ -57,7 +63,10 @@ export class DataService {
     let headers = new HttpHeaders();
     this.activeGroceryList = this.grocerylistsService.getActiveGroceryList();    
     headers = headers.append('Content-type', 'application/json');
-    return this.http.post<GroceryListProduct>("http://localhost:8080/api/addToCart?groceryListId="+this.activeGroceryList.groceryListId, body)
+    console.log("ADD PRODUCT TO LIST");
+    
+    return this.http.post<GroceryListProduct>("http://localhost:8080/api/addToCart?groceryListId="
+    +this.activeGroceryList.groceryListId, body)
   }
 
 }

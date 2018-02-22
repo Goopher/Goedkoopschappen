@@ -1,7 +1,7 @@
 <div>
 <div style="padding-top: 30px; width: 100%;">
     <div class="dropdown">
-        <button class="dropbtn">Boodschappenlijst</button>
+        <button class="btn" style="background-color:#1976D2;">Boodschappenlijst</button>
         <div class="dropdown-content">
           <div *ngFor="let grocerylist of grocerylists">
             <a (click)="setActiveGroceryList(grocerylist)">{{grocerylist.groceryListName}}</a>
@@ -17,6 +17,12 @@
     <td style="padding-right:50px">{{grocerylistproduct.amount}}</td>
     <td style="padding-right:50px">€{{grocerylistproduct.product.price * grocerylistproduct.amount / 100 | number: '1.2'}}</td>
   </tr>      
+  <tfoot>
+      <tr>
+        <th id="total" colspan="2">Totaal :</th>
+        <td>€{{total / 100  | number: '1.2'}}</td>
+      </tr>
+     </tfoot>
 </table>
 </div>
 </div>

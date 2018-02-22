@@ -5,12 +5,15 @@ import { Product } from '../models/product';
 import { NgForm } from '@angular/forms/src/directives/ng_form';
 import { EventEmitter } from 'events';
 import { GroceryListProduct } from '../models/grocerylistproduct.model';
+import { GroceryList } from '../models/grocerylist.model';
+import { GroceryListService } from '../../services/grocerylistsService.service';
 
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.scss']
 })
+
 export class ProductComponent implements OnInit {
 
 
@@ -20,10 +23,10 @@ export class ProductComponent implements OnInit {
   data = [];
   searched = false;
   searchString: String;
-  @Output() updates = new EventEmitter();
+  activeGroceryList: GroceryList;
 
   
-  constructor(private dataService:DataService) { }
+  constructor(private dataService:DataService, private grocerylistsService:GroceryListService) { }
 
   ngOnInit() {
 
@@ -48,12 +51,15 @@ export class ProductComponent implements OnInit {
   addProductToCart(product:Product) {
     console.log(product);
     this.dataService.addProductToCart(product).subscribe(data => this.groceryListProduct = data);
-    this.updates.emit(null);
+    this.activeGroceryList = this.grocerylistsService.getActiveGroceryList();    
+
   }
 
   loadMoreProducts() {
     this.data = this.products.slice(0,this.data.length + 5);
+    
   }
 
+  
 
 }

@@ -64,6 +64,16 @@ public class ProductRestController {
             groceryListProduct = iGroceryListProductService.create(groceryListProduct);
         }
         System.out.println("Product added to grocery list, ProductID: " + product.toString() + " , grocery list: " + groceryList.getGroceryListName());
+
+       /* List<GroceryListProduct> allProducts = iGroceryListProductService.findByGroceryList(groceryList);
+        int totalPrice = 0;
+        for(GroceryListProduct glp : allProducts){
+            totalPrice += glp.getProduct().getPrice()*glp.getAmount();
+        }
+        groceryList.setTotalPrice(totalPrice);*/
+
+       iGroceryListService.create(groceryList);
+
         return groceryListProduct;
     }
 
