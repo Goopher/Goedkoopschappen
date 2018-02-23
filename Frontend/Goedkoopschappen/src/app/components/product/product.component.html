@@ -4,8 +4,13 @@
       <form (ngSubmit)="onSubmit(f)" #f="ngForm">
         <div class="form-group">
           <label for="product">Zoek producten</label>
-          <input type="text" id="product" name="product" ngModel class="form-control">
+          <div style="float: right; padding-top: 50px; padding-left: 15px;">
+          <button mat-button type="submit"><mat-icon>search</mat-icon></button>
         </div>
+        <div style="overflow: hidden;">  
+        <input type="text" id="product" name="product" ngModel class="form-control">
+      </div>  
+      </div>
       </form>
       <div class="row d-flex">
         <div *ngIf="data.length === 0 && searched">
