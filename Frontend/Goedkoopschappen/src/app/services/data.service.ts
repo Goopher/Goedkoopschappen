@@ -42,12 +42,12 @@ export class DataService {
     return this.http.post<GroceryList>("http://localhost:8080/api/createGroceryList", body);
   }
 
-  deleteProductFromList(product:GroceryListProduct){
+  deleteProductFromList(product:GroceryListProduct): Observable<GroceryList>{
     let headers = new HttpHeaders();
     headers = headers.append('Content-type', 'application/json');
     console.log(product);
     
-    return this.http.delete("http://localhost:8080/api/deleteGroceryListProduct?id=" + product.groceryListProductId)
+    return this.http.delete<GroceryList>("http://localhost:8080/api/deleteGroceryListProduct?id=" + product.groceryListProductId)
   }
 
   deleteGroceryList(list:GroceryList) {

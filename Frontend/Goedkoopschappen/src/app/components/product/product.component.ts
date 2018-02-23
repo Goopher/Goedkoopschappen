@@ -27,7 +27,7 @@ export class ProductComponent implements OnInit {
   constructor(private dataService:DataService, private groceryListService:GroceryListService) { }
 
   ngOnInit() {
-    
+    this.data = [];
   }
 
   onSubmit(form: NgForm) {
