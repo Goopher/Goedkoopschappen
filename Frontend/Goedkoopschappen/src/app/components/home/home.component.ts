@@ -15,8 +15,13 @@ export class HomeComponent implements OnInit {
     'https://static.pexels.com/photos/3008/drinks-supermarket-cans-beverage.jpg'    
   ]
 
-  constructor() { 
+  audio;
 
+  constructor() { 
+    this.audio = new Audio();
+    this.audio.src = "../../../assets/goedkoopschappen.mp3";
+    this.audio.load();
+    this.audio.play();
     
   }
 

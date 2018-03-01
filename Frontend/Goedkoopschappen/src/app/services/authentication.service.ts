@@ -28,6 +28,6 @@ export class AuthenticationService {
     return this.http.post("http://localhost:8080/oauth/token",body, {headers: headers});
 
 
-  }npm
+  }
 
 }

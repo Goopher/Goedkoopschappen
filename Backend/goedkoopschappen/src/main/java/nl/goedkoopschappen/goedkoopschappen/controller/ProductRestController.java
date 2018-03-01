@@ -37,6 +37,10 @@ public class ProductRestController {
 
     @RequestMapping(value = "/products", params = "productName")
     public List<Product> findProductsByString(@RequestParam(value = "productName") String searchString) {
+        for (Product product :
+                iProductService.findByProductNameContaining(searchString)) {
+            System.out.println(product);
+        }
         return iProductService.findByProductNameContaining(searchString);
     }
 

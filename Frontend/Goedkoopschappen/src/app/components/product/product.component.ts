@@ -15,16 +15,16 @@ import { GroceryListService } from '../../services/grocerylistsService.service';
 export class ProductComponent implements OnInit {
 
 
-  products:Product[];
+  products: Product[];
   product = new Product();
-  groceryListProduct:GroceryListProduct;
+  groceryListProduct: GroceryListProduct;
   data = [];
   searched = false;
   searchString: String;
   @Output() updates = new EventEmitter();
 
-  
-  constructor(private dataService:DataService, private groceryListService:GroceryListService) { }
+
+  constructor(private dataService: DataService, private groceryListService: GroceryListService) { }
 
   ngOnInit() {
     this.data = [];
@@ -37,18 +37,16 @@ export class ProductComponent implements OnInit {
   }
 
   searchProducts(searchString) {
-      this.dataService.getProducts(searchString).subscribe((products) => {
-        this.products = products;
-        this.searchString=searchString;
-        if(this.products.length > 15) {
-        this.data = this.products.slice(0,15);
-        this.searched = true;
-        console.log(this.data.length)
-      }
-      });
+    this.dataService.getProducts(searchString).subscribe((products) => {
+      this.products = products;
+      this.searchString = searchString;
+      this.data = this.products.slice(0, 15);
+      this.searched = true;
+      console.log(this.data.length)
+    });
   }
 
-  addProductToCart(product:Product) {
+  addProductToCart(product: Product) {
     console.log(product);
     this.dataService.addProductToCart(product).subscribe(data => this.groceryListProduct = data);
     let groceryList = this.groceryListService.getActiveGroceryList();
@@ -57,7 +55,7 @@ export class ProductComponent implements OnInit {
   }
 
   loadMoreProducts() {
-    this.data = this.products.slice(0,this.data.length + 5);
+    this.data = this.products.slice(0, this.data.length + 5);
   }
 
 

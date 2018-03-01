@@ -1,7 +1,6 @@
 #top-div {
     position: relative;
     height: 100vh;
-    z-index: -1;
     overflow: hidden;   
 }
 
@@ -9,10 +8,13 @@
     height: 100%;
 }
 
+img {
+    padding:100px;
+}
 
 .home-content {
     position: absolute;
-    top: 300px;
+    top: 100px;
     z-index: 2; 
 }
 
@@ -23,6 +25,7 @@
     background: rgba(107, 152, 197, 0.95);
     border-radius: 50px 50px 50px 50px;
     padding: 50px;
+    z-index: 2; 
 }
 
 .sign-up {
@@ -32,6 +35,8 @@
     background: rgba(107, 152, 197, 0.95);
     border-radius: 50px 50px 50px 50px;
     padding: 50px;
+    z-index: 2; 
+
 }
 
 h1 {
